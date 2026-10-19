@@ -1,0 +1,803 @@
+<!doctype html>
+<html lang="en" data-theme="light">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="color-scheme" content="light dark" />
+    <title>Privacy Policy · Payzue</title>
+    <meta
+      name="description"
+      content="How Payzue collects, uses, and protects personal and transaction data across its payment infrastructure platform."
+    />
+    <link rel="canonical" href="https://thepayzue.com/privacy-policy.html" />
+    <meta name="robots" content="noindex, follow" />
+    <link rel="icon" type="image/png" sizes="48x48" href="favicon-48x48.png" />
+    <link rel="icon" type="image/png" sizes="192x192" href="favicon-192x192.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png" />
+    <link rel="icon" href="favicon.ico" type="image/x-icon" sizes="32x32" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,900;1,900&family=Inter:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      :root {
+        --bg: #fafaf9;
+        --surface: #f5f4f2;
+        --ink: #0c0a09;
+        --muted: #64748b;
+        --border: #e7e5e4;
+        --accent: #5b21b6;
+        --accent-light: #7c3aed;
+        --accent-amber: #f59e0b;
+        --success: #16a34a;
+        --nav-height: 72px;
+      }
+
+      html[data-theme="dark"] {
+        --bg: #090b0a;
+        --surface: #181b19;
+        --ink: #fafafa;
+        --muted: #a1a1aa;
+        --border: #27272a;
+        --accent: #8b5cf6;
+        --accent-light: #a78bfa;
+        --accent-amber: #f59e0b;
+        --success: #22c55e;
+      }
+
+      html {
+        scroll-behavior: smooth;
+      }
+
+      body {
+        font-family:
+          "Inter",
+          -apple-system,
+          BlinkMacSystemFont,
+          "Segoe UI",
+          Roboto,
+          sans-serif;
+        color: var(--ink);
+        background: var(--bg);
+        line-height: 1.65;
+        -webkit-font-smoothing: antialiased;
+      }
+
+      h1,
+      h2,
+      h3,
+      .legal-title {
+        font-family: "Montserrat", sans-serif;
+        font-weight: 700;
+      }
+
+      a {
+        color: var(--accent-light);
+      }
+
+      .container {
+        max-width: 1280px;
+        margin: 0 auto;
+        padding: 0 clamp(20px, 5vw, 40px);
+      }
+
+      /* Header */
+      header {
+        position: sticky;
+        top: 0;
+        z-index: 100;
+        background: rgba(255, 255, 255, 0.8);
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+        border-bottom: 1px solid var(--border);
+      }
+
+      html[data-theme="dark"] header {
+        background: rgba(0, 0, 0, 0.8);
+      }
+
+      nav {
+        height: var(--nav-height);
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+      }
+
+      .logo {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        text-decoration: none;
+        z-index: 110;
+      }
+
+      .logo img {
+        width: auto;
+        height: 32px;
+      }
+
+      .logo-dark {
+        display: none;
+      }
+
+      html[data-theme="dark"] .logo-dark {
+        display: block;
+      }
+
+      html[data-theme="dark"] .logo-light {
+        display: none;
+      }
+
+      .nav-actions {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+
+      .nav-home {
+        font-size: 0.88rem;
+        font-weight: 600;
+        color: var(--ink);
+        text-decoration: none;
+        padding: 0.5rem 0.9rem;
+        border-radius: 8px;
+        transition: background 0.2s;
+      }
+
+      .nav-home:hover {
+        background: var(--surface);
+      }
+
+      .theme-toggle {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 38px;
+        height: 38px;
+        border-radius: 8px;
+        background: var(--surface);
+        border: 1px solid var(--border);
+        cursor: pointer;
+        color: var(--muted);
+        transition: all 0.2s;
+      }
+
+      .theme-toggle:hover {
+        background: var(--accent);
+        border-color: var(--accent);
+        color: white;
+      }
+
+      .theme-toggle svg {
+        width: 18px;
+        height: 18px;
+      }
+
+      .theme-icon {
+        display: none;
+      }
+
+      html[data-theme="light"] .theme-icon-sun {
+        display: block;
+      }
+
+      html[data-theme="dark"] .theme-icon-moon {
+        display: block;
+      }
+
+      /* Hero */
+      .legal-hero {
+        padding: clamp(48px, 8vh, 80px) 0 clamp(32px, 5vh, 56px);
+        border-bottom: 1px solid var(--border);
+      }
+
+      .legal-eyebrow {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        font-size: 0.78rem;
+        font-weight: 700;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        color: var(--accent-light);
+        margin-bottom: 1rem;
+      }
+
+      .legal-title {
+        font-size: clamp(2rem, 4vw, 3rem);
+        letter-spacing: -0.02em;
+        margin-bottom: 0.85rem;
+      }
+
+      .legal-meta {
+        color: var(--muted);
+        font-size: 0.95rem;
+      }
+
+      /* Body layout */
+      .legal-layout {
+        display: grid;
+        grid-template-columns: 260px 1fr;
+        gap: clamp(32px, 5vw, 72px);
+        padding: clamp(40px, 6vh, 72px) 0 clamp(80px, 10vh, 140px);
+        align-items: start;
+      }
+
+      .legal-toc {
+        position: sticky;
+        top: calc(var(--nav-height) + 24px);
+        border: 1px solid var(--border);
+        border-radius: 14px;
+        padding: 1.25rem;
+        background: var(--surface);
+      }
+
+      .legal-toc-title {
+        font-size: 0.72rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+        color: var(--muted);
+        margin-bottom: 0.9rem;
+      }
+
+      .legal-toc ol {
+        list-style: none;
+        display: flex;
+        flex-direction: column;
+        gap: 0.55rem;
+        counter-reset: toc;
+      }
+
+      .legal-toc a {
+        counter-increment: toc;
+        display: flex;
+        gap: 0.55rem;
+        font-size: 0.85rem;
+        color: var(--ink);
+        text-decoration: none;
+        line-height: 1.4;
+      }
+
+      .legal-toc a::before {
+        content: counter(toc);
+        flex-shrink: 0;
+        width: 20px;
+        height: 20px;
+        border-radius: 6px;
+        background: var(--bg);
+        border: 1px solid var(--border);
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 0.68rem;
+        font-weight: 700;
+        color: var(--muted);
+      }
+
+      .legal-toc a:hover {
+        color: var(--accent-light);
+      }
+
+      .legal-body {
+        min-width: 0;
+        max-width: 760px;
+      }
+
+      .legal-body section {
+        padding-top: clamp(28px, 4vh, 44px);
+        margin-top: clamp(28px, 4vh, 44px);
+        border-top: 1px solid var(--border);
+        scroll-margin-top: calc(var(--nav-height) + 16px);
+      }
+
+      .legal-body section:first-of-type {
+        padding-top: 0;
+        margin-top: 0;
+        border-top: none;
+      }
+
+      .legal-body h2 {
+        font-size: 1.3rem;
+        margin-bottom: 1rem;
+        display: flex;
+        align-items: baseline;
+        gap: 0.6rem;
+      }
+
+      .legal-body h2 .num {
+        font-size: 0.9rem;
+        color: var(--accent-light);
+        font-family: "JetBrains Mono", "Inter", monospace;
+      }
+
+      .legal-body h3 {
+        font-size: 1.02rem;
+        margin: 1.4rem 0 0.6rem;
+      }
+
+      .legal-body p {
+        color: var(--ink);
+        opacity: 0.92;
+        margin-bottom: 0.9rem;
+        font-size: 0.96rem;
+      }
+
+      .legal-body ul {
+        margin: 0 0 0.9rem 1.4rem;
+        color: var(--ink);
+        opacity: 0.92;
+        font-size: 0.96rem;
+      }
+
+      .legal-body li {
+        margin-bottom: 0.45rem;
+      }
+
+      .legal-body strong {
+        font-weight: 700;
+      }
+
+      .legal-body table {
+        width: 100%;
+        border-collapse: collapse;
+        margin: 0 0 1.2rem;
+        font-size: 0.88rem;
+      }
+
+      .legal-body th,
+      .legal-body td {
+        text-align: left;
+        padding: 0.65rem 0.75rem;
+        border: 1px solid var(--border);
+        vertical-align: top;
+      }
+
+      .legal-body th {
+        background: var(--surface);
+        font-family: "Montserrat", sans-serif;
+        font-size: 0.75rem;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+        color: var(--muted);
+      }
+
+      .legal-callout {
+        background: var(--surface);
+        border: 1px solid var(--border);
+        border-left: 3px solid var(--accent-light);
+        border-radius: 10px;
+        padding: 1rem 1.25rem;
+        margin: 1rem 0;
+        font-size: 0.9rem;
+        color: var(--muted);
+      }
+
+      .legal-contact-box {
+        background: var(--surface);
+        border: 1px solid var(--border);
+        border-radius: 14px;
+        padding: 1.5rem;
+        font-size: 0.92rem;
+      }
+
+      .legal-contact-box a {
+        color: var(--accent-light);
+        font-weight: 600;
+        text-decoration: none;
+      }
+
+      @media (max-width: 900px) {
+        .legal-layout {
+          grid-template-columns: 1fr;
+        }
+
+        .legal-toc {
+          position: static;
+        }
+
+        .legal-body table {
+          display: block;
+          overflow-x: auto;
+        }
+      }
+
+      /* Footer */
+      footer {
+        border-top: 1px solid var(--border);
+        padding: 2.5rem 0;
+        background: var(--surface);
+      }
+
+      .footer-bottom {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: space-between;
+        gap: 1rem;
+      }
+
+      .footer-bottom-links {
+        display: flex;
+        gap: 1.5rem;
+        flex-wrap: wrap;
+      }
+
+      .footer-bottom-links a {
+        font-size: 0.85rem;
+        color: var(--muted);
+        text-decoration: none;
+      }
+
+      .footer-bottom-links a:hover {
+        color: var(--accent-light);
+      }
+
+      .footer-copyright {
+        font-size: 0.85rem;
+        color: var(--muted);
+      }
+    </style>
+  </head>
+
+  <body>
+    <header>
+      <nav class="container">
+        <a href="index.html" class="logo">
+          <img src="payzueindigo.png" alt="Payzue" class="logo-light" />
+          <img src="payzuewhite.png" alt="Payzue" class="logo-dark" />
+        </a>
+        <div class="nav-actions">
+          <a href="index.html" class="nav-home">Home</a>
+          <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
+            <svg
+              class="theme-icon theme-icon-sun"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              viewBox="0 0 24 24"
+            >
+              <circle cx="12" cy="12" r="5" />
+              <path
+                d="M12 1v2m0 18v2M4.22 4.22l1.42 1.42m12.72 12.72l1.42 1.42M1 12h2m18 0h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"
+              />
+            </svg>
+            <svg
+              class="theme-icon theme-icon-moon"
+              fill="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" />
+            </svg>
+          </button>
+        </div>
+      </nav>
+    </header>
+
+    <main>
+      <section class="legal-hero">
+        <div class="container">
+          <span class="legal-eyebrow">Legal</span>
+          <h1 class="legal-title">Privacy Policy</h1>
+          <p class="legal-meta">
+            Effective date: July 16, 2026 &middot; Last updated: July 16, 2026
+          </p>
+        </div>
+      </section>
+
+      <div class="container">
+        <div class="legal-layout">
+          <aside class="legal-toc" aria-label="Table of contents">
+            <div class="legal-toc-title">On this page</div>
+            <ol>
+              <li><a href="#introduction">Introduction &amp; Scope</a></li>
+              <li><a href="#information-we-collect">Information We Collect</a></li>
+              <li><a href="#how-we-use">How We Use Information</a></li>
+              <li><a href="#legal-basis">Legal Basis for Processing</a></li>
+              <li><a href="#how-we-share">How We Share Information</a></li>
+              <li><a href="#cookies">Cookies &amp; Tracking Technologies</a></li>
+              <li><a href="#retention">Data Retention</a></li>
+              <li><a href="#security">Data Security</a></li>
+              <li><a href="#your-rights">Your Rights &amp; Choices</a></li>
+              <li><a href="#transfers">International Data Transfers</a></li>
+              <li><a href="#children">Children's Privacy</a></li>
+              <li><a href="#third-party-links">Third-Party Links</a></li>
+              <li><a href="#changes">Changes to this Policy</a></li>
+              <li><a href="#grievance">Grievance Officer</a></li>
+              <li><a href="#contact">Contact Us</a></li>
+            </ol>
+          </aside>
+
+          <article class="legal-body">
+            <section id="introduction">
+              <h2><span class="num">01</span> Introduction &amp; Scope</h2>
+              <p>
+                Payzue Technologies Pvt. Ltd. ("<strong>Payzue</strong>,"
+                "<strong>we</strong>," "<strong>us</strong>," or
+                "<strong>our</strong>") respects your privacy and is committed to
+                protecting the personal information of our merchants, their
+                customers, website visitors, and other individuals whose data we
+                process in connection with our payment infrastructure platform
+                (the "<strong>Services</strong>").
+              </p>
+              <p>
+                This Privacy Policy explains what information we collect, how we
+                use and share it, the choices available to you, and how you can
+                exercise your rights. It applies to information collected through
+                our website at thepayzue.com, our APIs and dashboard, and any other
+                interaction you have with Payzue.
+              </p>
+              <p>
+                This Policy should be read together with our
+                <a href="terms-of-service.html">Terms of Service</a>. If you do not
+                agree with this Policy, please do not use the Services.
+              </p>
+            </section>
+
+            <section id="information-we-collect">
+              <h2><span class="num">02</span> Information We Collect</h2>
+              <p>We collect the following categories of information:</p>
+              <table>
+                <thead>
+                  <tr>
+                    <th>Category</th>
+                    <th>Examples</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>Identity &amp; contact data</td>
+                    <td>Name, business name, email address, phone number, postal address</td>
+                  </tr>
+                  <tr>
+                    <td>Verification &amp; KYC data</td>
+                    <td>PAN, GSTIN, certificate of incorporation, bank account details, director/authorised-signatory identity documents</td>
+                  </tr>
+                  <tr>
+                    <td>Transaction data</td>
+                    <td>Payment amount, timestamp, payment instrument type, UPI VPA (masked), status, and related metadata</td>
+                  </tr>
+                  <tr>
+                    <td>Technical &amp; device data</td>
+                    <td>IP address, browser type, device identifiers, operating system, log data</td>
+                  </tr>
+                  <tr>
+                    <td>Usage data</td>
+                    <td>Pages visited, API calls made, dashboard interactions, referral source</td>
+                  </tr>
+                  <tr>
+                    <td>Communications</td>
+                    <td>Support tickets, emails, call recordings (where legally permitted and disclosed)</td>
+                  </tr>
+                </tbody>
+              </table>
+              <p>
+                We do not collect or store full card numbers, CVV, or UPI PINs. Such
+                sensitive payment credentials are handled directly by regulated
+                banking partners and the NPCI network in accordance with PCI-DSS
+                and RBI tokenisation requirements.
+              </p>
+            </section>
+
+            <section id="how-we-use">
+              <h2><span class="num">03</span> How We Use Information</h2>
+              <p>We use the information we collect to:</p>
+              <ul>
+                <li>Onboard merchants and verify identity in compliance with KYC and anti-money-laundering obligations;</li>
+                <li>Process, route, and settle payment transactions;</li>
+                <li>Detect, investigate, and prevent fraud, unauthorised transactions, and other illegal activity;</li>
+                <li>Provide customer support and respond to inquiries;</li>
+                <li>Maintain, secure, and improve the Services, including debugging and analytics;</li>
+                <li>Comply with applicable law, regulation, court orders, and requests from RBI, NPCI, law enforcement, or other governmental authorities; and</li>
+                <li>Send you service-related communications and, where you have consented, marketing communications.</li>
+              </ul>
+            </section>
+
+            <section id="legal-basis">
+              <h2><span class="num">04</span> Legal Basis for Processing</h2>
+              <p>
+                We process personal information on the basis of: (a) performance of
+                a contract with you; (b) compliance with a legal obligation,
+                including RBI, NPCI, and anti-money-laundering requirements; (c) our
+                legitimate interests in operating, securing, and improving the
+                Services, provided those interests are not overridden by your
+                rights; and (d) your consent, where required, such as for marketing
+                communications or non-essential cookies.
+              </p>
+            </section>
+
+            <section id="how-we-share">
+              <h2><span class="num">05</span> How We Share Information</h2>
+              <p>We may share your information with:</p>
+              <ul>
+                <li><strong>Banking &amp; network partners</strong> - partner banks, NPCI, and card or UPI networks required to route and settle transactions;</li>
+                <li><strong>Service providers</strong> - cloud hosting, identity verification, analytics, customer support, and communication vendors who process data on our behalf under contractual confidentiality obligations;</li>
+                <li><strong>Regulators &amp; law enforcement</strong> - RBI, NPCI, tax authorities, courts, or other governmental bodies where required by law or to protect our legal rights;</li>
+                <li><strong>Professional advisors</strong> - auditors, legal counsel, and insurers, as necessary; and</li>
+                <li><strong>Corporate transactions</strong> - an acquirer or successor entity in connection with a merger, acquisition, financing, or sale of assets, subject to confidentiality commitments.</li>
+              </ul>
+              <p>We do not sell personal information to third parties for their own marketing purposes.</p>
+            </section>
+
+            <section id="cookies">
+              <h2><span class="num">06</span> Cookies &amp; Tracking Technologies</h2>
+              <p>
+                We use cookies and similar technologies to operate the website,
+                remember your theme and session preferences, and understand how
+                visitors use our site. You can control cookies through your browser
+                settings; disabling certain cookies may affect site functionality.
+                We currently use first-party functional cookies and limited
+                privacy-respecting analytics; we do not use third-party advertising
+                cookies.
+              </p>
+            </section>
+
+            <section id="retention">
+              <h2><span class="num">07</span> Data Retention</h2>
+              <p>
+                We retain personal and transaction information for as long as
+                necessary to provide the Services, comply with our legal and
+                regulatory obligations (including RBI recordkeeping requirements,
+                which may require retention of transaction records for a minimum of
+                ten years), resolve disputes, and enforce our agreements. When
+                information is no longer required, we securely delete or anonymise
+                it.
+              </p>
+            </section>
+
+            <section id="security">
+              <h2><span class="num">08</span> Data Security</h2>
+              <p>
+                We maintain administrative, technical, and physical safeguards
+                designed to protect personal information against unauthorised
+                access, alteration, disclosure, or destruction, including encryption
+                of data in transit (TLS 1.3) and at rest, HMAC-signed webhooks,
+                role-based access controls, and continuous monitoring. No method of
+                transmission or storage is completely secure, and we cannot
+                guarantee absolute security.
+              </p>
+            </section>
+
+            <section id="your-rights">
+              <h2><span class="num">09</span> Your Rights &amp; Choices</h2>
+              <p>
+                Subject to applicable law, including the Digital Personal Data
+                Protection Act, 2023, you may have the right to:
+              </p>
+              <ul>
+                <li>Access a copy of the personal information we hold about you;</li>
+                <li>Request correction of inaccurate or incomplete information;</li>
+                <li>Request erasure of your information, subject to our legal retention obligations;</li>
+                <li>Withdraw consent for processing that is based on consent, without affecting the lawfulness of processing before withdrawal;</li>
+                <li>Object to or request restriction of certain processing; and</li>
+                <li>Nominate another individual to exercise your rights in the event of death or incapacity, where applicable law permits.</li>
+              </ul>
+              <p>
+                To exercise these rights, contact us at
+                <a href="mailto:support@payzue.com">support@payzue.com</a>. We may
+                need to verify your identity before fulfilling your request.
+              </p>
+            </section>
+
+            <section id="transfers">
+              <h2><span class="num">10</span> International Data Transfers</h2>
+              <p>
+                We primarily store and process data within India. Where we engage
+                service providers located outside India, we take reasonable steps to
+                ensure such providers offer an adequate level of protection through
+                contractual safeguards consistent with applicable data protection
+                law.
+              </p>
+            </section>
+
+            <section id="children">
+              <h2><span class="num">11</span> Children's Privacy</h2>
+              <p>
+                The Services are intended for businesses and individuals who are at
+                least 18 years old. We do not knowingly collect personal information
+                from children. If we become aware that we have inadvertently
+                collected information from a child, we will take steps to delete it
+                promptly.
+              </p>
+            </section>
+
+            <section id="third-party-links">
+              <h2><span class="num">12</span> Third-Party Links</h2>
+              <p>
+                Our website and dashboard may contain links to third-party sites,
+                including partner banks and integration marketplaces. We are not
+                responsible for the privacy practices of those third parties, and we
+                encourage you to review their privacy policies independently.
+              </p>
+            </section>
+
+            <section id="changes">
+              <h2><span class="num">13</span> Changes to this Policy</h2>
+              <p>
+                We may update this Privacy Policy from time to time to reflect
+                changes in our practices, technology, legal requirements, or other
+                factors. We will post the revised Policy on this page with an
+                updated "Last updated" date and, for material changes, provide
+                additional notice such as an email or dashboard notification.
+              </p>
+            </section>
+
+            <section id="grievance">
+              <h2><span class="num">14</span> Grievance Officer</h2>
+              <p>
+                In accordance with the Information Technology Act, 2000 and the
+                rules made thereunder, the Grievance Officer for Payzue Technologies
+                Pvt. Ltd. can be reached as follows:
+              </p>
+              <div class="legal-contact-box">
+                <strong>Grievance Officer</strong><br />
+                Payzue Technologies Pvt. Ltd.<br /><br />
+                Email:
+                <a href="mailto:support@payzue.com">support@payzue.com</a><br />
+                We will acknowledge grievances within 24 hours and aim to resolve
+                them within 15 days, as required by applicable law.
+              </div>
+            </section>
+
+            <section id="contact">
+              <h2><span class="num">15</span> Contact Us</h2>
+              <p>
+                If you have questions or concerns about this Privacy Policy or our
+                data practices, please contact us:
+              </p>
+              <div class="legal-contact-box">
+                <strong>Payzue Technologies Pvt. Ltd.</strong><br /><br />
+                Email:
+                <a href="mailto:support@payzue.com">support@payzue.com</a>
+              </div>
+            </section>
+          </article>
+        </div>
+      </div>
+    </main>
+
+    <footer>
+      <div class="container footer-bottom">
+        <div class="footer-copyright">
+          &copy; <span id="year"></span> Payzue Technologies Pvt. Ltd. All
+          rights reserved.
+        </div>
+        <div class="footer-bottom-links">
+          <a href="index.html">Home</a>
+          <a href="terms-of-service.html">Terms of Service</a>
+          <a href="privacy-policy.html">Privacy Policy</a>
+        </div>
+      </div>
+    </footer>
+
+    <script>
+      document.getElementById("year").textContent = new Date().getFullYear();
+
+      (function () {
+        const html = document.documentElement;
+        const toggle = document.getElementById("themeToggle");
+        const saved = localStorage.getItem("payzue.theme");
+        const prefersDark =
+          window.matchMedia &&
+          window.matchMedia("(prefers-color-scheme: dark)").matches;
+        const initial = saved || (prefersDark ? "dark" : "light");
+        html.setAttribute("data-theme", initial);
+
+        toggle.addEventListener("click", () => {
+          const next =
+            html.getAttribute("data-theme") === "dark" ? "light" : "dark";
+          html.setAttribute("data-theme", next);
+          localStorage.setItem("payzue.theme", next);
+        });
+      })();
+    </script>
+  </body>
+</html>

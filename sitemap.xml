@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/xsl" href="sitemap.xsl"?>
+<urlset
+  xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
+    http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd"
+>
+
+  <!--
+    Payzue Public Website — XML Sitemap
+    Protocol: https://www.sitemaps.org/protocol.html
+    Generated: 2026-03-05
+    Domain canonical: https://thepayzue.com
+
+    Notes:
+    • Fragment identifiers (#section) are intentionally omitted — search engines
+      ignore the fragment portion of a URL per RFC 3986 and sitemaps.org spec.
+    • Error pages (404, 502) are excluded; they must not be indexed.
+    • changefreq and priority are advisory hints, not guarantees.
+  -->
+
+  <!-- ═══════════════════════════════════════════════════
+       HOME — the single authoritative page of the site.
+       All sections (features, developers, integration,
+       security, pricing, contact) live here via anchors.
+       ═══════════════════════════════════════════════════ -->
+  <url>
+    <loc>https://thepayzue.com/</loc>
+    <lastmod>2026-03-05</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>1.0</priority>
+  </url>
+
+</urlset>

@@ -1,0 +1,1526 @@
+<!doctype html>
+<html lang="en" data-theme="light">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>404 – Page Not Found · Payzue</title>
+  <meta name="description" content="This page doesn't exist. Play Block Breaker while you find your way back." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Syne:wght@600;700;800&family=Inter:wght@400;500;600;700&display=swap"
+    rel="stylesheet" />
+  <link rel="icon" href="favicon.ico" type="image/x-icon" />
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --bg: #fafaf9;
+      --surface: #f5f4f2;
+      --ink: #0c0a09;
+      --muted: #64748b;
+      --border: #e7e5e4;
+      --accent: #7c3aed;
+      --accent-light: #a78bfa;
+      --error: #ef4444;
+      --nav-h: 64px;
+    }
+
+    html[data-theme="dark"] {
+      --bg: #09090b;
+      --surface: #18181b;
+      --ink: #fafafa;
+      --muted: #a1a1aa;
+      --border: #27272a;
+      --accent: #7c3aed;
+      --accent-light: #a78bfa;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family:
+        "Inter",
+        -apple-system,
+        BlinkMacSystemFont,
+        sans-serif;
+      background: var(--bg);
+      color: var(--ink);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 1.5rem 2rem 2rem 2rem;
+      position: relative;
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    @media (max-width: 991px) {
+      body {
+        padding: 0 !important;
+      }
+    }
+
+    /* ── Animated background ── */
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      z-index: -1;
+      opacity: 0.15;
+      background-image:
+        radial-gradient(circle at 15% 55%,
+          rgba(124, 58, 237, 0.1) 0%,
+          transparent 50%),
+        radial-gradient(circle at 85% 75%,
+          rgba(167, 139, 250, 0.08) 0%,
+          transparent 50%),
+        radial-gradient(circle at 50% 10%,
+          rgba(16, 185, 129, 0.07) 0%,
+          transparent 50%);
+      animation: bgFloat 22s ease-in-out infinite;
+    }
+
+    body::after {
+      content: "";
+      position: fixed;
+      inset: 0;
+      z-index: -1;
+      opacity: 0.25;
+      background-image:
+        linear-gradient(rgba(124, 58, 237, 0.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(124, 58, 237, 0.04) 1px, transparent 1px);
+      background-size: 48px 48px;
+      animation: gridShift 28s linear infinite;
+    }
+
+    html[data-theme="dark"] body::before {
+      background-image:
+        radial-gradient(circle at 15% 55%,
+          rgba(124, 58, 237, 0.18) 0%,
+          transparent 50%),
+        radial-gradient(circle at 85% 75%,
+          rgba(167, 139, 250, 0.14) 0%,
+          transparent 50%),
+        radial-gradient(circle at 50% 10%,
+          rgba(16, 185, 129, 0.1) 0%,
+          transparent 50%);
+    }
+
+    html[data-theme="dark"] body::after {
+      background-image: radial-gradient(circle,
+          rgba(124, 58, 237, 0.1) 1px,
+          transparent 1px);
+      background-size: 30px 30px;
+    }
+
+    @keyframes bgFloat {
+
+      0%,
+      100% {
+        transform: translate(0, 0) scale(1);
+      }
+
+      33% {
+        transform: translate(28px, -28px) scale(1.08);
+      }
+
+      66% {
+        transform: translate(-20px, 18px) scale(0.94);
+      }
+    }
+
+    @keyframes gridShift {
+      from {
+        transform: translate(0, 0);
+      }
+
+      to {
+        transform: translate(48px, 48px);
+      }
+    }
+
+    @keyframes fadeUp {
+      from {
+        opacity: 0;
+        transform: translateY(24px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes floatY {
+
+      0%,
+      100% {
+        transform: translateY(0);
+      }
+
+      50% {
+        transform: translateY(-14px);
+      }
+    }
+
+    @keyframes pulseSlow {
+
+      0%,
+      100% {
+        opacity: 1;
+        transform: scale(1);
+      }
+
+      50% {
+        opacity: 0.7;
+        transform: scale(1.06);
+      }
+    }
+
+    /* ── Top Bar ── */
+    .topbar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: var(--nav-h);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 2rem;
+      background: rgba(250, 250, 249, 0.85);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--border);
+      z-index: 200;
+    }
+
+    html[data-theme="dark"] .topbar {
+      background: rgba(9, 9, 11, 0.85);
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+      color: var(--ink);
+      font-family: "Syne", sans-serif;
+      font-weight: 700;
+      font-size: 1.1rem;
+    }
+
+    .logo img {
+      height: 32px;
+      width: auto;
+      display: block;
+    }
+
+    .logo .logo-light {
+      display: block;
+    }
+
+    .logo .logo-dark {
+      display: none;
+    }
+
+    html[data-theme="dark"] .logo .logo-light {
+      display: none;
+    }
+
+    html[data-theme="dark"] .logo .logo-dark {
+      display: block;
+    }
+
+    .theme-toggle {
+      display: flex;
+      align-items: center;
+      padding: 0.45rem 0.7rem;
+      border-radius: 8px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      cursor: pointer;
+      transition: all 0.2s;
+      color: var(--muted);
+    }
+
+    .theme-toggle:hover {
+      background: var(--accent);
+      border-color: var(--accent);
+      color: white;
+    }
+
+    .theme-toggle svg {
+      width: 18px;
+      height: 18px;
+    }
+
+    .theme-icon {
+      display: none;
+    }
+
+    html[data-theme="light"] .theme-icon-sun {
+      display: block;
+    }
+
+    html[data-theme="dark"] .theme-icon-moon {
+      display: block;
+    }
+
+    /* ── Container ── */
+    .container {
+      /* max-width: 1100px; */
+      width: 100%;
+      animation: fadeUp 0.7s ease-out 0.1s both;
+      padding: 0 1.5rem;
+    }
+
+    .error-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 3rem;
+      align-items: center;
+      margin-top: 2rem;
+    }
+
+    @media (min-width: 992px) {
+      .error-grid {
+        grid-template-columns: 0.9fr 1.1fr;
+        margin-top: 4rem;
+        gap: 5rem;
+      }
+
+      .hero {
+        text-align: left !important;
+        margin-bottom: 0 !important;
+      }
+
+      .error-desc {
+        margin-left: 0 !important;
+        margin-right: 0 !important;
+      }
+
+      .buttons {
+        justify-content: flex-start !important;
+      }
+    }
+
+    /* ── Hero ── */
+    .hero {
+      text-align: center;
+      margin-bottom: 3rem;
+    }
+
+    .error-icon {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 76px;
+      height: 76px;
+      border-radius: 50%;
+      background: rgba(124, 58, 237, 0.1);
+      border: 1.5px solid rgba(124, 58, 237, 0.2);
+      margin-bottom: 1.5rem;
+      animation: floatY 3.5s ease-in-out infinite;
+      transition: all 0.3s ease;
+    }
+
+    .error-icon:hover {
+      background: rgba(124, 58, 237, 0.2);
+      transform: translateY(-5px) scale(1.05);
+    }
+
+    .error-icon svg {
+      width: 36px;
+      height: 36px;
+      color: var(--accent);
+    }
+
+    .error-code {
+      font-family: "Syne", sans-serif;
+      font-size: clamp(6rem, 16vw, 8rem);
+      font-weight: 800;
+      line-height: 1;
+      background: linear-gradient(135deg, var(--accent), var(--accent-light));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 1rem;
+      letter-spacing: -0.03em;
+    }
+
+    .error-title {
+      font-family: "Syne", sans-serif;
+      font-size: clamp(1.4rem, 3.5vw, 2rem);
+      font-weight: 700;
+      color: var(--ink);
+      margin-bottom: 0.75rem;
+    }
+
+    .error-desc {
+      font-size: 1.05rem;
+      color: var(--muted);
+      line-height: 1.7;
+      max-width: 480px;
+      margin: 0 auto 2rem;
+    }
+
+    /* ── Buttons ── */
+    .buttons {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-bottom: 3.5rem;
+    }
+
+    .btn {
+      padding: 0.75rem 1.6rem;
+      font-size: 0.95rem;
+      font-weight: 600;
+      border-radius: 10px;
+      text-decoration: none;
+      transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      border: none;
+      cursor: pointer;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .btn::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg,
+          transparent,
+          rgba(255, 255, 255, 0.25),
+          transparent);
+      transition: left 0.5s ease;
+    }
+
+    .btn:hover::before {
+      left: 100%;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, var(--accent), var(--accent-light));
+      color: white;
+      box-shadow: 0 4px 14px rgba(124, 58, 237, 0.3);
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(124, 58, 237, 0.4);
+    }
+
+    .btn-ghost {
+      background: transparent;
+      color: var(--ink);
+      border: 1.5px solid var(--border);
+    }
+
+    .btn-ghost:hover {
+      background: var(--surface);
+      border-color: var(--accent);
+      color: var(--accent) !important;
+      transform: translateY(-2px);
+    }
+
+    .btn svg {
+      width: 16px;
+      height: 16px;
+      flex-shrink: 0;
+    }
+
+    /* ── Game Section ── */
+    .game-section {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 2rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .game-section::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg,
+          rgba(124, 58, 237, 0.04),
+          transparent 60%);
+      pointer-events: none;
+    }
+
+    .game-header {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      margin-bottom: 0.4rem;
+    }
+
+    .game-icon {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 36px;
+      height: 36px;
+      border-radius: 8px;
+      background: rgba(124, 58, 237, 0.1);
+      color: var(--accent);
+      flex-shrink: 0;
+      transition: all 0.3s ease;
+    }
+
+    .game-section:hover .game-icon {
+      background: rgba(124, 58, 237, 0.2);
+      transform: scale(1.1) rotate(5deg);
+    }
+
+    .game-icon svg {
+      width: 20px;
+      height: 20px;
+    }
+
+    .game-title {
+      font-family: "Syne", sans-serif;
+      font-size: 1.3rem;
+      font-weight: 700;
+      color: var(--ink);
+    }
+
+    .game-subtitle {
+      color: var(--muted);
+      font-size: 0.9rem;
+      margin-bottom: 1.25rem;
+      padding-left: 0.25rem;
+    }
+
+    /* ── Canvas ── */
+    .canvas-wrap {
+      position: relative;
+      display: flex;
+      justify-content: center;
+    }
+
+    #gameCanvas {
+      border: 1.5px solid var(--border);
+      border-radius: 14px;
+      background: linear-gradient(160deg, #1a1025 0%, #120a1f 100%);
+      max-width: 100%;
+      display: block;
+      cursor: none;
+      box-shadow:
+        0 8px 32px rgba(0, 0, 0, 0.15),
+        inset 0 1px 0 rgba(255, 255, 255, 0.04);
+    }
+
+    /* ── Game HUD Bar ── */
+    .game-hud {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-top: 1rem;
+      padding: 0.6rem 1rem;
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      font-size: 0.88rem;
+      font-weight: 600;
+      color: var(--muted);
+    }
+
+    .hud-item {
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+
+    .hud-val {
+      color: var(--accent);
+      font-variant-numeric: tabular-nums;
+      min-width: 3ch;
+    }
+
+    .lives-dots {
+      display: flex;
+      gap: 4px;
+      align-items: center;
+    }
+
+    .life-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--accent);
+      transition: opacity 0.3s;
+    }
+
+    .life-dot.lost {
+      opacity: 0.2;
+    }
+
+    .game-btn {
+      padding: 0.45rem 1rem;
+      background: var(--accent);
+      color: white;
+      border: none;
+      border-radius: 8px;
+      font-weight: 600;
+      font-size: 0.85rem;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      font-family: "Inter", sans-serif;
+    }
+
+    .game-btn:hover {
+      background: var(--accent-light);
+      transform: translateY(-1px);
+    }
+
+    /* ── Controls hint ── */
+    .controls-hint {
+      margin-top: 1rem;
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+      flex-wrap: wrap;
+      font-size: 0.83rem;
+      color: var(--muted);
+      padding: 0.75rem 1rem;
+      background: rgba(124, 58, 237, 0.04);
+      border-radius: 8px;
+      border: 1px solid rgba(124, 58, 237, 0.1);
+    }
+
+    .hint-group {
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+
+    .key {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0.15rem 0.45rem;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-bottom-width: 2px;
+      border-radius: 5px;
+      font-family: "JetBrains Mono", "Courier New", monospace;
+      font-size: 0.78rem;
+      font-weight: 600;
+      color: var(--accent);
+      min-width: 24px;
+    }
+
+    /* ── Popular pages ── */
+    .popular {
+      text-align: center;
+      padding-top: 2.5rem;
+      margin-top: 4rem;
+      border-top: 1px solid var(--border);
+    }
+
+    .popular h3 {
+      font-size: 0.8rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 1.25rem;
+    }
+
+    .links-grid {
+      display: flex;
+      justify-content: center;
+      gap: 0.75rem;
+      flex-wrap: wrap;
+    }
+
+    .link-chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      padding: 0.5rem 1rem;
+      border: 1.5px solid var(--border);
+      border-radius: 999px;
+      color: var(--ink);
+      text-decoration: none;
+      font-size: 0.875rem;
+      font-weight: 500;
+      transition: all 0.2s;
+    }
+
+    .link-chip svg {
+      width: 13px;
+      height: 13px;
+      color: var(--accent);
+    }
+
+    .link-chip:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+      background: rgba(124, 58, 237, 0.05);
+      transform: translateY(-1px);
+    }
+
+    /* ── Responsive ── */
+    @media (max-width: 640px) {
+      .topbar {
+        padding: 0 1rem;
+      }
+
+      .game-section {
+        padding: 1.25rem 1rem;
+      }
+
+      .controls-hint {
+        gap: 1rem;
+      }
+
+      #gameCanvas {
+        border-radius: 10px;
+      }
+    }
+  </style>
+  <!-- Microsoft Clarity -->
+  <script type="text/javascript">
+    (function(c,l,a,r,i,t,y){
+      c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+      t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+      y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+    })(window, document, "clarity", "script", "w5ft5oem9o");
+  </script>
+</head>
+
+<body>
+  <!-- Top Bar -->
+  <nav class="topbar">
+    <a href="/" class="logo" aria-label="Payzue home">
+      <img src="payzueindigo.png" alt="Payzue Logo" class="logo-light" />
+      <img src="payzuewhite.png" alt="Payzue Logo" class="logo-dark" />
+    </a>
+    <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
+      <svg class="theme-icon theme-icon-sun" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+        <circle cx="12" cy="12" r="5" />
+        <path
+          d="M12 1v2m0 18v2M4.22 4.22l1.42 1.42m12.72 12.72l1.42 1.42M1 12h2m18 0h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42" />
+      </svg>
+      <svg class="theme-icon theme-icon-moon" fill="currentColor" viewBox="0 0 24 24">
+        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" />
+      </svg>
+    </button>
+  </nav>
+
+  <!-- Main -->
+  <main class="container">
+    <div class="error-grid">
+      <!-- Hero -->
+      <section class="hero">
+        <!-- <div class="error-icon" aria-hidden="true">
+          <svg fill="none" stroke="currentColor" stroke-width="1.75" viewBox="0 0 24 24">
+            <circle cx="11" cy="11" r="8" />
+            <path d="m21 21-4.35-4.35M11 8v3m0 3h.01" />
+          </svg>
+        </div> -->
+
+        <div class="error-code" aria-label="Error 404">404</div>
+        <h1 class="error-title">This page doesn't exist.</h1>
+        <p class="error-desc">
+          The URL may be wrong, or this content has been moved or deleted. Let's
+          get you back on track.
+        </p>
+
+        <div class="buttons">
+          <a href="/" class="btn btn-primary">
+            <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+              <path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z" />
+              <path d="M9 22V12h6v10" />
+            </svg>
+            Go Home
+          </a>
+          <a href="javascript:history.back()" class="btn btn-ghost">
+            <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+              <path d="M19 12H5m7 7-7-7 7-7" />
+            </svg>
+            Go Back
+          </a>
+        </div>
+      </section>
+
+      <!-- Game -->
+      <section class="game-section" aria-label="Block Breaker game">
+        <div class="game-header">
+          <div class="game-icon" aria-hidden="true">
+            <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+              <rect x="2" y="14" width="4" height="3" rx="1" />
+              <rect x="18" y="14" width="4" height="3" rx="1" />
+              <rect x="8" y="14" width="8" height="3" rx="1" />
+              <path d="M6 17v-1a2 2 0 012-2h8a2 2 0 012 2v1" />
+              <path d="M12 14V7m-3 3 3-3 3 3" />
+            </svg>
+          </div>
+          <div>
+            <div class="game-title">Block Breaker</div>
+          </div>
+        </div>
+        <p class="game-subtitle">
+          Break all the blocks to advance. Don't let the ball drop.
+        </p>
+
+        <div class="canvas-wrap">
+          <canvas id="gameCanvas" width="660" height="380"></canvas>
+        </div>
+
+        <div class="game-hud">
+          <div class="hud-item">
+            <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+              <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
+            </svg>
+            Score <span class="hud-val" id="scoreVal">0</span>
+          </div>
+          <div class="hud-item">
+            <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+              <path d="M21 3H3v18l4-4h14V3z" />
+            </svg>
+            Level <span class="hud-val" id="levelVal">1</span>
+          </div>
+          <div class="hud-item">
+            Lives
+            <div class="lives-dots" id="livesDots">
+              <div class="life-dot" id="ld0"></div>
+              <div class="life-dot" id="ld1"></div>
+              <div class="life-dot" id="ld2"></div>
+            </div>
+          </div>
+          <div class="hud-item">
+            <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+              <path d="M8.21 13.89L7 23l5-3 5 3-1.21-9.12" />
+              <path d="M15 7a3 3 0 1 1-6 0 3 3 0 0 1 6 0z" />
+            </svg>
+            Best <span class="hud-val" id="bestVal">0</span>
+          </div>
+          <button class="game-btn" id="restartBtn">New Game</button>
+        </div>
+
+        <div class="controls-hint" aria-label="Game controls">
+          <div class="hint-group">
+            <span class="key">Mouse</span> or <span class="key">←</span><span class="key">→</span>
+            - move paddle
+          </div>
+          <div class="hint-group">
+            <span class="key">Space</span> - launch ball
+          </div>
+          <div class="hint-group">Touch - drag to move</div>
+        </div>
+      </section>
+    </div>
+
+    <!-- Popular pages -->
+    <section class="popular">
+      <h3>Popular pages</h3>
+      <div class="links-grid">
+        <a href="/#features" class="link-chip">
+          <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <path d="M5 12h14m-7-7 7 7-7 7" />
+          </svg>
+          Features
+        </a>
+        <a href="/#developers" class="link-chip">
+          <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <path d="M5 12h14m-7-7 7 7-7 7" />
+          </svg>
+          Developers
+        </a>
+        <a href="/#pricing" class="link-chip">
+          <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <path d="M5 12h14m-7-7 7 7-7 7" />
+          </svg>
+          Pricing
+        </a>
+        <a href="/#security" class="link-chip">
+          <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <path d="M5 12h14m-7-7 7 7-7 7" />
+          </svg>
+          Security
+        </a>
+        <a href="mailto:support@payzue.com?subject=Support%20Request%20%E2%80%93%20Page%20Not%20Found%20on%20Payzue%20Website&amp;body=Hi%20Payzue%20Team%2C%0A%0AI%20encountered%20a%20404%20error%20while%20browsing%20your%20website.%20Could%20you%20please%20help%20me%20find%20what%20I%20was%20looking%20for%20or%20redirect%20me%20to%20the%20correct%20page%3F%0A%0AThank%20you.%0A%0AWarm%20Regards" class="link-chip">
+          <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <path d="M5 12h14m-7-7 7 7-7 7" />
+          </svg>
+          Contact Support
+        </a>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    // ── Theme ──────────────────────────────────────────────────────────────
+    const themeToggle = document.getElementById("themeToggle");
+    const saved = localStorage.getItem("payzue.theme");
+    const prefersDark = window.matchMedia(
+      "(prefers-color-scheme: dark)",
+    ).matches;
+    document.documentElement.setAttribute(
+      "data-theme",
+      saved || (prefersDark ? "dark" : "light"),
+    );
+    themeToggle.addEventListener("click", () => {
+      const next =
+        document.documentElement.getAttribute("data-theme") === "dark"
+          ? "light"
+          : "dark";
+      document.documentElement.setAttribute("data-theme", next);
+      localStorage.setItem("payzue.theme", next);
+    });
+
+    // ── Block Breaker ──────────────────────────────────────────────────────
+    const canvas = document.getElementById("gameCanvas");
+    const ctx = canvas.getContext("2d");
+    const scoreEl = document.getElementById("scoreVal");
+    const levelEl = document.getElementById("levelVal");
+    const bestEl = document.getElementById("bestVal");
+    const ldEls = [0, 1, 2].map((i) => document.getElementById("ld" + i));
+    const restartBtn = document.getElementById("restartBtn");
+
+    // Responsive canvas
+    function sizeCanvas() {
+      const maxW = Math.min(660, canvas.parentElement.clientWidth - 4);
+      canvas.style.width = maxW + "px";
+      canvas.style.height = Math.round((maxW * 380) / 660) + "px";
+    }
+    sizeCanvas();
+    window.addEventListener("resize", sizeCanvas);
+
+    // ── Palette ────────────────────────────────────────────────────────────
+    const PALETTE = {
+      ball: "#a78bfa",
+      ballGlow: "rgba(167, 139, 250,0.55)",
+      paddle: "#7c3aed",
+      paddleGlow: "rgba(124, 58, 237,0.5)",
+      trail: "rgba(167, 139, 250,0.18)",
+      blockRows: [
+        ["#4c1d95", "#6d28d9"], // row 0 – deep violet  (3 hits)
+        ["#7c3aed", "#6d28d9"], // row 1 – violet       (2 hits)
+        ["#8b5cf6", "#7c3aed"], // row 2 – violet       (2 hits)
+        ["#a78bfa", "#8b5cf6"], // row 3 – lilac        (1 hit)
+        ["#c4b5fd", "#a78bfa"], // row 4 – pale lilac   (1 hit)
+        ["#ddd6fe", "#c4b5fd"], // row 5 – lightest     (1 hit)
+      ],
+      special: ["#ef4444", "#dc2626"], // red – extra life
+      bg: "#120a1f",
+      bgGrid: "rgba(124, 58, 237,0.06)",
+      text: "#ddd6fe",
+      overlay: "rgba(9,9,11,0.88)",
+    };
+
+    // ── Constants ────────────────────────────────────────────────────────────
+    const W = 660,
+      H = 380;
+    const PADDLE_H = 10,
+      PADDLE_W_BASE = 90;
+    const BALL_R = 7;
+    const BLOCK_COLS = 11,
+      BLOCK_ROWS = 6;
+    const BLOCK_GAP = 5;
+    const BLOCK_TOP = 42;
+    const BLOCK_W = Math.floor(
+      (W - BLOCK_GAP * (BLOCK_COLS + 1)) / BLOCK_COLS,
+    );
+    const BLOCK_H = 18;
+    const HIT_PTS = [3, 2, 2, 1, 1, 1]; // hits per row
+
+    // ── State ─────────────────────────────────────────────────────────────
+    let score, best, lives, level, launched, raf;
+    let paddle, ball, blocks, particles, trail;
+    let state; // 'playing' | 'dead' | 'win' | 'ready'
+    let mouseX = W / 2;
+
+    best = parseInt(localStorage.getItem("bb-best") || "0");
+    bestEl.textContent = best;
+
+    function initLevel() {
+      const speed = 1.4 + (level - 1) * 0.4;
+      paddle = {
+        x: W / 2 - PADDLE_W_BASE / 2,
+        y: H - 28,
+        w: PADDLE_W_BASE,
+        h: PADDLE_H,
+      };
+      ball = {
+        x: W / 2,
+        y: H - 28 - BALL_R - paddle.h - 2,
+        vx: speed * (Math.random() < 0.5 ? 0.6 : -0.6),
+        vy: -speed,
+        r: BALL_R,
+      };
+      launched = false;
+      particles = [];
+      trail = [];
+      state = "ready";
+      blocks = buildBlocks();
+    }
+
+    function buildBlocks() {
+      const arr = [];
+      for (let r = 0; r < BLOCK_ROWS; r++) {
+        for (let c = 0; c < BLOCK_COLS; c++) {
+          const isSpecial = r === 0 && c === 5; // center top = extra life
+          arr.push({
+            x: BLOCK_GAP + c * (BLOCK_W + BLOCK_GAP),
+            y: BLOCK_TOP + r * (BLOCK_H + BLOCK_GAP),
+            w: BLOCK_W,
+            h: BLOCK_H,
+            hits: isSpecial ? 1 : HIT_PTS[r],
+            maxHits: isSpecial ? 1 : HIT_PTS[r],
+            row: r,
+            special: isSpecial,
+            alive: true,
+          });
+        }
+      }
+      return arr;
+    }
+
+    function initGame() {
+      score = 0;
+      lives = 3;
+      level = 1;
+      scoreEl.textContent = 0;
+      levelEl.textContent = 1;
+      updateLivesUI();
+      initLevel();
+    }
+
+    // ── HUD Helpers ────────────────────────────────────────────────────────
+    function updateLivesUI() {
+      ldEls.forEach((el, i) => el.classList.toggle("lost", i >= lives));
+    }
+
+    // ── Particles ─────────────────────────────────────────────────────────
+    function spawnParticles(x, y, color, count = 14) {
+      for (let i = 0; i < count; i++) {
+        const angle = ((Math.PI * 2) / count) * i + Math.random() * 0.4;
+        const speed = 1.5 + Math.random() * 3;
+        particles.push({
+          x,
+          y,
+          vx: Math.cos(angle) * speed,
+          vy: Math.sin(angle) * speed,
+          life: 1,
+          decay: 0.03 + Math.random() * 0.025,
+          r: 2 + Math.random() * 2.5,
+          color,
+        });
+      }
+    }
+
+    function updateParticles() {
+      for (let i = particles.length - 1; i >= 0; i--) {
+        const p = particles[i];
+        p.x += p.vx;
+        p.y += p.vy;
+        p.vy += 0.06; // gravity
+        p.life -= p.decay;
+        if (p.life <= 0) particles.splice(i, 1);
+      }
+    }
+
+    function drawParticles() {
+      particles.forEach((p) => {
+        ctx.globalAlpha = p.life;
+        ctx.fillStyle = p.color;
+        ctx.beginPath();
+        ctx.rect(p.x - p.r / 2, p.y - p.r / 2, p.r, p.r);
+        ctx.fill();
+      });
+      ctx.globalAlpha = 1;
+    }
+
+    // ── Trail ─────────────────────────────────────────────────────────────
+    function addTrail() {
+      trail.push({ x: ball.x, y: ball.y, life: 1 });
+      if (trail.length > 18) trail.shift();
+    }
+
+    function drawTrail() {
+      trail.forEach((t, i) => {
+        const a = (i / trail.length) * 0.5 * t.life;
+        ctx.globalAlpha = a;
+        ctx.fillStyle = PALETTE.ball;
+        ctx.beginPath();
+        ctx.arc(t.x, t.y, ball.r * 0.7, 0, Math.PI * 2);
+        ctx.fill();
+        t.life -= 0.05;
+      });
+      ctx.globalAlpha = 1;
+    }
+
+    // ── Draw helpers ──────────────────────────────────────────────────────
+    function drawRoundRect(x, y, w, h, r, fill, glow) {
+      if (glow) {
+        ctx.shadowColor = glow;
+        ctx.shadowBlur = 8;
+      }
+      ctx.fillStyle = fill;
+      ctx.beginPath();
+      ctx.roundRect(x, y, w, h, r);
+      ctx.fill();
+      ctx.shadowBlur = 0;
+    }
+
+    function drawBackground() {
+      ctx.fillStyle = PALETTE.bg;
+      ctx.fillRect(0, 0, W, H);
+      // subtle dot grid
+      ctx.fillStyle = PALETTE.bgGrid;
+      const gs = 22;
+      for (let x = gs; x < W; x += gs) {
+        for (let y = gs; y < H; y += gs) {
+          ctx.beginPath();
+          ctx.arc(x, y, 1, 0, Math.PI * 2);
+          ctx.fill();
+        }
+      }
+    }
+
+    function drawPaddle() {
+      const grad = ctx.createLinearGradient(
+        paddle.x,
+        paddle.y,
+        paddle.x,
+        paddle.y + paddle.h,
+      );
+      grad.addColorStop(0, "#8b5cf6");
+      grad.addColorStop(1, "#7c3aed");
+      drawRoundRect(
+        paddle.x,
+        paddle.y,
+        paddle.w,
+        paddle.h,
+        5,
+        grad,
+        PALETTE.paddleGlow,
+      );
+      // shine
+      ctx.globalAlpha = 0.35;
+      ctx.fillStyle = "white";
+      ctx.beginPath();
+      ctx.roundRect(paddle.x + 4, paddle.y + 1, paddle.w - 8, 3, 2);
+      ctx.fill();
+      ctx.globalAlpha = 1;
+    }
+
+    function drawBall() {
+      const grad = ctx.createRadialGradient(
+        ball.x - 2,
+        ball.y - 2,
+        1,
+        ball.x,
+        ball.y,
+        ball.r,
+      );
+      grad.addColorStop(0, "#ddd6fe");
+      grad.addColorStop(1, PALETTE.ball);
+      ctx.shadowColor = PALETTE.ballGlow;
+      ctx.shadowBlur = 14;
+      ctx.fillStyle = grad;
+      ctx.beginPath();
+      ctx.arc(ball.x, ball.y, ball.r, 0, Math.PI * 2);
+      ctx.fill();
+      ctx.shadowBlur = 0;
+    }
+
+    function blockColor(b) {
+      if (b.special) {
+        const t = b.hits / b.maxHits;
+        return b.hits === 1 ? PALETTE.special[0] : PALETTE.special[1];
+      }
+      const row = Math.min(b.row, PALETTE.blockRows.length - 1);
+      const t = b.hits / b.maxHits;
+      return t > 0.5 ? PALETTE.blockRows[row][0] : PALETTE.blockRows[row][1];
+    }
+
+    function blockGlow(b) {
+      if (b.special) return "rgba(239,68,68,0.5)";
+      const row = Math.min(b.row, PALETTE.blockRows.length - 1);
+      return row <= 1 ? "rgba(124, 58, 237,0.4)" : null;
+    }
+
+    function drawBlocks() {
+      blocks.forEach((b) => {
+        if (!b.alive) return;
+        const opacity = 0.55 + 0.45 * (b.hits / b.maxHits);
+        ctx.globalAlpha = opacity;
+        drawRoundRect(b.x, b.y, b.w, b.h, 4, blockColor(b), blockGlow(b));
+        // shine
+        ctx.globalAlpha = 0.18 * opacity;
+        ctx.fillStyle = "white";
+        ctx.beginPath();
+        ctx.roundRect(b.x + 3, b.y + 2, b.w - 6, 4, 2);
+        ctx.fill();
+        // multi-hit indicator dots
+        if (b.maxHits > 1) {
+          ctx.globalAlpha = opacity * 0.8;
+          for (let i = 0; i < b.hits; i++) {
+            ctx.fillStyle = "rgba(255,255,255,0.7)";
+            ctx.beginPath();
+            ctx.arc(
+              b.x + b.w / 2 + (i - (b.hits - 1) / 2) * 7,
+              b.y + b.h - 4,
+              2,
+              0,
+              Math.PI * 2,
+            );
+            ctx.fill();
+          }
+        }
+        ctx.globalAlpha = 1;
+      });
+    }
+
+    // ── Overlay texts ─────────────────────────────────────────────────────
+    function drawOverlay(heading, sub, btnLabel) {
+      ctx.fillStyle = PALETTE.overlay;
+      ctx.fillRect(0, 0, W, H);
+
+      ctx.textAlign = "center";
+      ctx.fillStyle = PALETTE.text;
+      ctx.font = "700 28px Syne, sans-serif";
+      ctx.fillText(heading, W / 2, H / 2 - 28);
+
+      ctx.font = "500 14px Inter, sans-serif";
+      ctx.fillStyle = "#c4b5fd";
+      ctx.fillText(sub, W / 2, H / 2 + 4);
+
+      // button
+      const bw = 140,
+        bh = 36,
+        bx = W / 2 - bw / 2,
+        by = H / 2 + 26;
+      drawRoundRect(bx, by, bw, bh, 8, PALETTE.paddle, PALETTE.paddleGlow);
+      ctx.fillStyle = "white";
+      ctx.font = "600 13px Inter, sans-serif";
+      ctx.fillText(btnLabel, W / 2, by + bh / 2 + 5);
+      ctx.textAlign = "left";
+    }
+
+    function drawReadyOverlay() {
+      ctx.fillStyle = "rgba(9,9,11,0.7)";
+      ctx.fillRect(0, 0, W, H);
+      ctx.textAlign = "center";
+      ctx.fillStyle = PALETTE.text;
+      ctx.font = "700 22px Syne, sans-serif";
+      ctx.fillText("Block Breaker", W / 2, H / 2 - 16);
+      ctx.font = "500 13px Inter, sans-serif";
+      ctx.fillStyle = "#c4b5fd";
+      ctx.fillText("Click or press Space to launch", W / 2, H / 2 + 12);
+      ctx.textAlign = "left";
+    }
+
+    // ── Physics ────────────────────────────────────────────────────────────
+    function movePaddle() {
+      const target = mouseX - paddle.w / 2;
+      paddle.x = Math.max(
+        0,
+        Math.min(W - paddle.w, paddle.x + (target - paddle.x) * 0.22),
+      );
+    }
+
+    function moveBall() {
+      if (!launched) {
+        // ball rides paddle
+        ball.x = paddle.x + paddle.w / 2;
+        ball.y = paddle.y - ball.r - 2;
+        return;
+      }
+
+      ball.x += ball.vx;
+      ball.y += ball.vy;
+
+      // Wall bounces
+      if (ball.x - ball.r <= 0) {
+        ball.x = ball.r;
+        ball.vx = Math.abs(ball.vx);
+      }
+      if (ball.x + ball.r >= W) {
+        ball.x = W - ball.r;
+        ball.vx = -Math.abs(ball.vx);
+      }
+      if (ball.y - ball.r <= 0) {
+        ball.y = ball.r;
+        ball.vy = Math.abs(ball.vy);
+      }
+
+      // Paddle collision
+      if (
+        ball.vy > 0 &&
+        ball.y + ball.r >= paddle.y &&
+        ball.y + ball.r <= paddle.y + paddle.h + 4 &&
+        ball.x >= paddle.x - ball.r &&
+        ball.x <= paddle.x + paddle.w + ball.r
+      ) {
+        const rel = (ball.x - (paddle.x + paddle.w / 2)) / (paddle.w / 2); // -1 to 1
+        const angle = rel * (Math.PI / 3); // max 60°
+        const speed = Math.sqrt(ball.vx ** 2 + ball.vy ** 2);
+        ball.vx = speed * Math.sin(angle);
+        ball.vy = -Math.abs(speed * Math.cos(angle));
+        ball.y = paddle.y - ball.r - 1;
+      }
+
+      // Ball drop
+      if (ball.y - ball.r > H) {
+        lives--;
+        updateLivesUI();
+        spawnParticles(ball.x, H - 20, PALETTE.ball, 20);
+        if (lives <= 0) {
+          state = "dead";
+        } else {
+          initLevel(); // respawn same level
+        }
+      }
+    }
+
+    function checkBlockCollisions() {
+      for (let i = 0; i < blocks.length; i++) {
+        const b = blocks[i];
+        if (!b.alive) continue;
+
+        const bTop = b.y,
+          bBot = b.y + b.h,
+          bL = b.x,
+          bR = b.x + b.w;
+        if (ball.x + ball.r < bL || ball.x - ball.r > bR) continue;
+        if (ball.y + ball.r < bTop || ball.y - ball.r > bBot) continue;
+
+        // Which face?
+        const fromTop = Math.abs(ball.y + ball.r - bTop);
+        const fromBottom = Math.abs(ball.y - ball.r - bBot);
+        const fromLeft = Math.abs(ball.x + ball.r - bL);
+        const fromRight = Math.abs(ball.x - ball.r - bR);
+        const minDist = Math.min(fromTop, fromBottom, fromLeft, fromRight);
+
+        if (minDist === fromTop || minDist === fromBottom) ball.vy = -ball.vy;
+        else ball.vx = -ball.vx;
+
+        b.hits--;
+        if (b.hits <= 0) {
+          b.alive = false;
+          const pts = b.maxHits * 10 * level;
+          score += pts;
+          scoreEl.textContent = score;
+          if (score > best) {
+            best = score;
+            bestEl.textContent = best;
+            localStorage.setItem("bb-best", best);
+          }
+          const color = b.special
+            ? PALETTE.special[0]
+            : PALETTE.blockRows[Math.min(b.row, 5)][0];
+          spawnParticles(
+            b.x + b.w / 2,
+            b.y + b.h / 2,
+            color,
+            b.maxHits >= 3 ? 20 : 12,
+          );
+          if (b.special && lives < 3) {
+            lives++;
+            updateLivesUI();
+            spawnParticles(b.x + b.w / 2, b.y + b.h / 2, "#ef4444", 8);
+          }
+        }
+        break; // one block per frame
+      }
+
+      // Level cleared?
+      if (blocks.every((b) => !b.alive)) {
+        state = "win";
+      }
+    }
+
+    // ── Main loop ─────────────────────────────────────────────────────────
+    function loop() {
+      raf = requestAnimationFrame(loop);
+      drawBackground();
+
+      if (state === "playing") {
+        movePaddle();
+        addTrail();
+        moveBall();
+        checkBlockCollisions();
+        updateParticles();
+        drawTrail();
+        drawBlocks();
+        drawPaddle();
+        drawBall();
+        drawParticles();
+      } else if (state === "ready") {
+        movePaddle();
+        drawBlocks();
+        drawPaddle();
+        drawBall();
+        drawReadyOverlay();
+      } else if (state === "dead") {
+        drawBlocks();
+        drawPaddle();
+        drawParticles();
+        updateParticles();
+        drawOverlay(
+          "Game Over",
+          `Score: ${score} · Best: ${best}`,
+          "Play Again",
+        );
+      } else if (state === "win") {
+        drawBlocks();
+        drawPaddle();
+        drawParticles();
+        updateParticles();
+        drawOverlay(
+          `Level ${level} Cleared!`,
+          `+${score} points`,
+          "Next Level",
+        );
+      }
+    }
+
+    // ── Input ─────────────────────────────────────────────────────────────
+    // Mouse
+    canvas.addEventListener("mousemove", (e) => {
+      const rect = canvas.getBoundingClientRect();
+      const scaleX = W / rect.width;
+      mouseX = (e.clientX - rect.left) * scaleX;
+    });
+
+    canvas.addEventListener("click", (e) => {
+      const rect = canvas.getBoundingClientRect();
+      const scaleX = W / rect.width;
+      const cx = (e.clientX - rect.left) * scaleX;
+      const cy = (e.clientY - rect.top) * (H / rect.height);
+
+      if (state === "ready") {
+        state = "playing";
+        launched = true;
+        return;
+      }
+
+      // overlay button hit test
+      const bw = 140,
+        bh = 36,
+        bx = W / 2 - bw / 2,
+        by = H / 2 + 26;
+      if (cx >= bx && cx <= bx + bw && cy >= by && cy <= by + bh) {
+        if (state === "dead") {
+          initGame();
+        } else if (state === "win") {
+          level++;
+          levelEl.textContent = level;
+          initLevel();
+          state = "playing";
+          launched = true;
+        }
+      }
+    });
+
+    // Keyboard
+    const keys = {};
+    document.addEventListener("keydown", (e) => {
+      keys[e.key] = true;
+      if (e.key === " ") {
+        e.preventDefault();
+        if (state === "ready") {
+          state = "playing";
+          launched = true;
+        } else if (state === "dead") {
+          initGame();
+        } else if (state === "win") {
+          level++;
+          levelEl.textContent = level;
+          initLevel();
+          state = "playing";
+          launched = true;
+        }
+      }
+    });
+    document.addEventListener("keyup", (e) => {
+      keys[e.key] = false;
+    });
+
+    // Keyboard paddle
+    const KB_SPEED = 10;
+    const origMovePaddle = movePaddle;
+
+    function movePaddleWithKeys() {
+      if (keys["ArrowLeft"] || keys["a"] || keys["A"])
+        mouseX = Math.max(paddle.w / 2, mouseX - KB_SPEED);
+      if (keys["ArrowRight"] || keys["d"] || keys["D"])
+        mouseX = Math.min(W - paddle.w / 2, mouseX + KB_SPEED);
+    }
+
+    // Touch
+    let touchActive = false;
+    canvas.addEventListener(
+      "touchstart",
+      (e) => {
+        e.preventDefault();
+        touchActive = true;
+      },
+      { passive: false },
+    );
+    canvas.addEventListener(
+      "touchmove",
+      (e) => {
+        e.preventDefault();
+        const rect = canvas.getBoundingClientRect();
+        mouseX = (e.touches[0].clientX - rect.left) * (W / rect.width);
+      },
+      { passive: false },
+    );
+    canvas.addEventListener("touchend", () => {
+      touchActive = false;
+      if (state === "ready") {
+        state = "playing";
+        launched = true;
+      }
+    });
+
+    // Restart button
+    restartBtn.addEventListener("click", () => {
+      initGame();
+    });
+
+    // Override movePaddle to include key input
+    const _origMove = movePaddle;
+    function movePaddle() {
+      movePaddleWithKeys();
+      const target = mouseX - paddle.w / 2;
+      paddle.x = Math.max(
+        0,
+        Math.min(W - paddle.w, paddle.x + (target - paddle.x) * 0.22),
+      );
+    }
+
+    // ── Start ─────────────────────────────────────────────────────────────
+    initGame();
+    loop();
+  </script>
+</body>
+
+</html>

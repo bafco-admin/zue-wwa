@@ -1,0 +1,1543 @@
+<!doctype html>
+<html lang="en" data-theme="light">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>502 – Server Unavailable · Payzue</title>
+  <meta name="description" content="Our servers are temporarily unavailable. Play a game while we reconnect." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Syne:wght@600;700;800&family=Inter:wght@400;500;600;700&display=swap"
+    rel="stylesheet" />
+  <link rel="icon" href="favicon.ico" type="image/x-icon" />
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --bg: #fafaf9;
+      --surface: #f5f4f2;
+      --ink: #0c0a09;
+      --muted: #64748b;
+      --border: #e7e5e4;
+      --accent: #7c3aed;
+      --accent-light: #a78bfa;
+      --warn: #f59e0b;
+      --nav-h: 64px;
+    }
+
+    html[data-theme="dark"] {
+      --bg: #09090b;
+      --surface: #18181b;
+      --ink: #fafafa;
+      --muted: #a1a1aa;
+      --border: #27272a;
+      --accent: #7c3aed;
+      --accent-light: #a78bfa;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family:
+        "Inter",
+        -apple-system,
+        BlinkMacSystemFont,
+        sans-serif;
+      background: var(--bg);
+      color: var(--ink);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 1.5rem 2rem 2rem 2rem;
+      position: relative;
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    @media (max-width: 991px) {
+      body {
+        padding: 0 !important;
+      }
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      z-index: -1;
+      opacity: 0.4;
+      background-image:
+        radial-gradient(circle at 15% 55%,
+          rgba(124, 58, 237, 0.1) 0%,
+          transparent 50%),
+        radial-gradient(circle at 85% 75%,
+          rgba(167, 139, 250, 0.08) 0%,
+          transparent 50%),
+        radial-gradient(circle at 50% 10%,
+          rgba(16, 185, 129, 0.07) 0%,
+          transparent 50%);
+      animation: bgFloat 22s ease-in-out infinite;
+    }
+
+    body::after {
+      content: "";
+      position: fixed;
+      inset: 0;
+      z-index: -1;
+      opacity: 0.22;
+      background-image:
+        linear-gradient(rgba(124, 58, 237, 0.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(124, 58, 237, 0.04) 1px, transparent 1px);
+      background-size: 48px 48px;
+      animation: gridShift 28s linear infinite;
+    }
+
+    html[data-theme="dark"] body::before {
+      background-image:
+        radial-gradient(circle at 15% 55%,
+          rgba(124, 58, 237, 0.18) 0%,
+          transparent 50%),
+        radial-gradient(circle at 85% 75%,
+          rgba(167, 139, 250, 0.14) 0%,
+          transparent 50%),
+        radial-gradient(circle at 50% 10%,
+          rgba(16, 185, 129, 0.1) 0%,
+          transparent 50%);
+    }
+
+    html[data-theme="dark"] body::after {
+      background-image: radial-gradient(circle,
+          rgba(124, 58, 237, 0.1) 1px,
+          transparent 1px);
+      background-size: 30px 30px;
+    }
+
+    @keyframes bgFloat {
+
+      0%,
+      100% {
+        transform: translate(0, 0) scale(1);
+      }
+
+      33% {
+        transform: translate(28px, -28px) scale(1.08);
+      }
+
+      66% {
+        transform: translate(-20px, 18px) scale(0.94);
+      }
+    }
+
+    @keyframes gridShift {
+      from {
+        transform: translate(0, 0);
+      }
+
+      to {
+        transform: translate(48px, 48px);
+      }
+    }
+
+    @keyframes fadeUp {
+      from {
+        opacity: 0;
+        transform: translateY(24px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes pulseRing {
+      0% {
+        transform: scale(1);
+        opacity: 0.7;
+      }
+
+      100% {
+        transform: scale(1.65);
+        opacity: 0;
+      }
+    }
+
+    @keyframes spin {
+      from {
+        transform: rotate(0deg);
+      }
+
+      to {
+        transform: rotate(360deg);
+      }
+    }
+
+    /* Topbar */
+    .topbar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: var(--nav-h);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 2rem;
+      background: rgba(250, 250, 249, 0.85);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--border);
+      z-index: 200;
+    }
+
+    html[data-theme="dark"] .topbar {
+      background: rgba(9, 9, 11, 0.85);
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+      color: var(--ink);
+      font-family: "Syne", sans-serif;
+      font-weight: 700;
+      font-size: 1.1rem;
+    }
+
+    .logo img {
+      height: 32px;
+      width: auto;
+      display: block;
+    }
+
+    .logo .logo-light {
+      display: block;
+    }
+
+    .logo .logo-dark {
+      display: none;
+    }
+
+    html[data-theme="dark"] .logo .logo-light {
+      display: none;
+    }
+
+    html[data-theme="dark"] .logo .logo-dark {
+      display: block;
+    }
+
+    .theme-toggle {
+      display: flex;
+      align-items: center;
+      padding: 0.45rem 0.7rem;
+      border-radius: 8px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      cursor: pointer;
+      transition: all 0.2s;
+      color: var(--muted);
+    }
+
+    .theme-toggle:hover {
+      background: var(--accent);
+      border-color: var(--accent);
+      color: white;
+    }
+
+    .theme-toggle svg {
+      width: 18px;
+      height: 18px;
+    }
+
+    .theme-icon {
+      display: none;
+    }
+
+    html[data-theme="light"] .theme-icon-sun {
+      display: block;
+    }
+
+    html[data-theme="dark"] .theme-icon-moon {
+      display: block;
+    }
+
+    /* Layout */
+    .container {
+      /* max-width: 1100px; */
+      width: 100%;
+      animation: fadeUp 0.7s ease-out 0.1s both;
+      padding: 0 1.5rem;
+    }
+
+    .error-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 3rem;
+      align-items: center;
+      margin-top: 2rem;
+    }
+
+    @media (min-width: 992px) {
+      .error-grid {
+        grid-template-columns: 0.9fr 1.1fr;
+        margin-top: 4rem;
+        gap: 5rem;
+      }
+
+      .hero {
+        text-align: left !important;
+        margin-bottom: 0 !important;
+      }
+
+      .error-desc {
+        margin-left: 0 !important;
+        margin-right: 0 !important;
+      }
+
+      .buttons {
+        justify-content: flex-start !important;
+      }
+    }
+
+    .hero {
+      text-align: center;
+      margin-bottom: 2.5rem;
+    }
+
+    .status-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.4rem 1rem;
+      background: rgba(245, 158, 11, 0.1);
+      border: 1px solid rgba(245, 158, 11, 0.3);
+      border-radius: 999px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: var(--warn);
+    }
+
+    .spinner {
+      width: 12px;
+      height: 12px;
+      border: 2px solid rgba(245, 158, 11, 0.3);
+      border-top-color: var(--warn);
+      border-radius: 50%;
+      animation: spin 0.9s linear infinite;
+    }
+
+    .error-icon {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 76px;
+      height: 76px;
+      border-radius: 50%;
+      background: rgba(124, 58, 237, 0.1);
+      border: 1.5px solid rgba(124, 58, 237, 0.22);
+      margin-bottom: 1.5rem;
+      position: relative;
+      transition: all 0.3s ease;
+    }
+
+    .error-icon:hover {
+      background: rgba(124, 58, 237, 0.2);
+      transform: scale(1.05);
+    }
+
+    .error-icon::before {
+      content: "";
+      position: absolute;
+      inset: -8px;
+      border-radius: 50%;
+      border: 1.5px solid rgba(124, 58, 237, 0.2);
+      animation: pulseRing 2.4s ease-out infinite;
+    }
+
+    .error-icon svg {
+      width: 36px;
+      height: 36px;
+      color: var(--accent);
+    }
+
+    .error-code {
+      font-family: "Syne", sans-serif;
+      font-size: clamp(5.5rem, 14vw, 8rem);
+      font-weight: 800;
+      /* line-height: 1; */
+      background: linear-gradient(135deg, var(--accent), var(--accent-light));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 1rem;
+      letter-spacing: -0.03em;
+    }
+
+    .error-title {
+      font-family: "Syne", sans-serif;
+      font-size: clamp(1.3rem, 3.2vw, 1.9rem);
+      font-weight: 700;
+      color: var(--ink);
+      margin-bottom: 0.75rem;
+    }
+
+    .error-desc {
+      font-size: 1rem;
+      color: var(--muted);
+      line-height: 1.7;
+      max-width: 480px;
+      margin: 0 auto 2rem;
+    }
+
+    .buttons {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-bottom: 3rem;
+    }
+
+    .btn {
+      padding: 0.75rem 1.6rem;
+      font-size: 0.95rem;
+      font-weight: 600;
+      border-radius: 10px;
+      text-decoration: none;
+      transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      border: none;
+      cursor: pointer;
+      position: relative;
+      overflow: hidden;
+      font-family: "Inter", sans-serif;
+    }
+
+    .btn::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg,
+          transparent,
+          rgba(255, 255, 255, 0.25),
+          transparent);
+      transition: left 0.5s ease;
+    }
+
+    .btn:hover::before {
+      left: 100%;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, var(--accent), var(--accent-light));
+      color: white;
+      box-shadow: 0 4px 14px rgba(124, 58, 237, 0.3);
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(124, 58, 237, 0.4);
+    }
+
+    .btn-ghost {
+      background: transparent;
+      color: var(--ink);
+      border: 1.5px solid var(--border);
+    }
+
+    .btn-ghost:hover {
+      background: var(--surface);
+      border-color: var(--accent);
+      color: var(--accent);
+      transform: translateY(-2px);
+    }
+
+    .btn svg {
+      width: 16px;
+      height: 16px;
+      flex-shrink: 0;
+    }
+
+    /* Game section */
+    .game-section {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 2rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .game-section::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg,
+          rgba(124, 58, 237, 0.04),
+          transparent 60%);
+      pointer-events: none;
+    }
+
+    .game-header {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      margin-bottom: 0.4rem;
+    }
+
+    .game-icon {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 36px;
+      height: 36px;
+      border-radius: 8px;
+      background: rgba(124, 58, 237, 0.1);
+      color: var(--accent);
+      flex-shrink: 0;
+      transition: all 0.3s ease;
+    }
+
+    .game-section:hover .game-icon {
+      background: rgba(124, 58, 237, 0.2);
+      transform: scale(1.1) rotate(5deg);
+    }
+
+    .game-icon svg {
+      width: 20px;
+      height: 20px;
+    }
+
+    .game-title {
+      font-family: "Syne", sans-serif;
+      font-size: 1.3rem;
+      font-weight: 700;
+      color: var(--ink);
+    }
+
+    .game-subtitle {
+      color: var(--muted);
+      font-size: 0.9rem;
+      margin-bottom: 1.25rem;
+    }
+
+    .canvas-wrap {
+      display: flex;
+      justify-content: center;
+    }
+
+    #gameCanvas {
+      border: 1.5px solid var(--border);
+      border-radius: 14px;
+      max-width: 100%;
+      display: block;
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
+      cursor: pointer;
+    }
+
+    .game-hud {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-top: 1rem;
+      padding: 0.6rem 1rem;
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      font-size: 0.88rem;
+      font-weight: 600;
+      color: var(--muted);
+    }
+
+    .hud-item {
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+
+    .hud-val {
+      color: var(--accent);
+      font-variant-numeric: tabular-nums;
+      min-width: 3ch;
+    }
+
+    .game-btn {
+      padding: 0.45rem 1rem;
+      background: var(--accent);
+      color: white;
+      border: none;
+      border-radius: 8px;
+      font-weight: 600;
+      font-size: 0.85rem;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      font-family: "Inter", sans-serif;
+    }
+
+    .game-btn:hover {
+      background: var(--accent-light);
+      transform: translateY(-1px);
+    }
+
+    .controls-hint {
+      margin-top: 1rem;
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+      flex-wrap: wrap;
+      font-size: 0.83rem;
+      color: var(--muted);
+      padding: 0.75rem 1rem;
+      background: rgba(124, 58, 237, 0.04);
+      border-radius: 8px;
+      border: 1px solid rgba(124, 58, 237, 0.1);
+    }
+
+    .hint-group {
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+
+    .key {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0.15rem 0.45rem;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-bottom-width: 2px;
+      border-radius: 5px;
+      font-family: "Courier New", monospace;
+      font-size: 0.78rem;
+      font-weight: 700;
+      color: var(--accent);
+      min-width: 24px;
+    }
+
+    /* Status info */
+    .status-info {
+      background: rgba(124, 58, 237, 0.04);
+      border: 1px solid rgba(124, 58, 237, 0.15);
+      border-radius: 16px;
+      padding: 1.5rem;
+      margin-bottom: 2rem;
+    }
+
+    .status-info h3 {
+      font-family: "Syne", sans-serif;
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--ink);
+      margin-bottom: 1rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .status-info h3 svg {
+      width: 18px;
+      height: 18px;
+      color: var(--accent);
+      flex-shrink: 0;
+    }
+
+    .check-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.6rem;
+    }
+
+    .check-list li {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.75rem;
+      font-size: 0.92rem;
+      color: var(--muted);
+      line-height: 1.5;
+    }
+
+    .check-list li svg {
+      width: 16px;
+      height: 16px;
+      color: var(--accent);
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+
+    /* Popular */
+    .popular {
+      text-align: center;
+      padding-top: 2.5rem;
+      margin-top: 4rem;
+      border-top: 1px solid var(--border);
+    }
+
+    .popular h3 {
+      font-size: 0.8rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 1.25rem;
+    }
+
+    .links-grid {
+      display: flex;
+      justify-content: center;
+      gap: 0.75rem;
+      flex-wrap: wrap;
+    }
+
+    .link-chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      padding: 0.5rem 1rem;
+      border: 1.5px solid var(--border);
+      border-radius: 999px;
+      color: var(--ink);
+      text-decoration: none;
+      font-size: 0.875rem;
+      font-weight: 500;
+      transition: all 0.2s;
+    }
+
+    .link-chip svg {
+      width: 13px;
+      height: 13px;
+      color: var(--accent);
+    }
+
+    .link-chip:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+      background: rgba(124, 58, 237, 0.05);
+      transform: translateY(-1px);
+    }
+
+    @media (max-width: 640px) {
+      .topbar {
+        padding: 0 1rem;
+      }
+
+      .game-section {
+        padding: 1.25rem 1rem;
+      }
+
+      #gameCanvas {
+        border-radius: 10px;
+      }
+    }
+  </style>
+  <!-- Microsoft Clarity -->
+  <script type="text/javascript">
+    (function(c,l,a,r,i,t,y){
+      c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+      t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+      y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+    })(window, document, "clarity", "script", "w5ft5oem9o");
+  </script>
+</head>
+
+<body>
+  <nav class="topbar">
+    <a href="/" class="logo" aria-label="Payzue home">
+      <img src="payzueindigo.png" alt="Payzue Logo" class="logo-light" />
+      <img src="payzuewhite.png" alt="Payzue Logo" class="logo-dark" />
+    </a>
+    <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
+      <svg class="theme-icon theme-icon-sun" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+        <circle cx="12" cy="12" r="5" />
+        <path
+          d="M12 1v2m0 18v2M4.22 4.22l1.42 1.42m12.72 12.72l1.42 1.42M1 12h2m18 0h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42" />
+      </svg>
+      <svg class="theme-icon theme-icon-moon" fill="currentColor" viewBox="0 0 24 24">
+        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" />
+      </svg>
+    </button>
+  </nav>
+
+  <main class="container">
+    <div class="error-grid">
+      <!-- Hero Details (Left) -->
+      <section class="hero">
+        <div class="status-badge">
+          <div class="spinner"></div>
+          Servers Reconnecting
+        </div>
+        <!-- <div class="error-icon" aria-hidden="true">
+          <svg fill="none" stroke="currentColor" stroke-width="1.75" viewBox="0 0 24 24">
+            <rect x="2" y="3" width="20" height="14" rx="2" />
+            <path d="M8 21h8m-4-4v4" />
+            <path d="m15 8-3 3-3-3" />
+          </svg>
+        </div> -->
+        <div class="error-code" aria-label="Error 502">502</div>
+        <h1 class="error-title">Our servers are temporarily unavailable.</h1>
+        <p class="error-desc">
+          This usually resolves in under two minutes. Refresh the page, or play
+          a game while you wait.
+        </p>
+        <div class="buttons">
+          <a href="javascript:location.reload()" class="btn btn-primary">
+            <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+              <path d="M21.5 2v6h-6M2.5 22v-6h6M2 11.5a10 10 0 0 1 18.8-4.3M22 12.5a10 10 0 0 1-18.8 4.2" />
+            </svg>
+            Try Again
+          </a>
+          <a href="/" class="btn btn-ghost">
+            <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+              <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" />
+              <path d="M9 22V12h6v10" />
+            </svg>
+            Go Home
+          </a>
+        </div>
+
+        <!-- Status Info -->
+        <div class="status-info">
+          <h3>
+            <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+              <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+            </svg>
+            System Checklist
+          </h3>
+          <ul class="check-list">
+            <li>
+              <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                <path d="M5 13l4 4L19 7" />
+              </svg>
+              API Gateway: Operational
+            </li>
+            <li>
+              <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                <path d="M5 13l4 4L19 7" />
+              </svg>
+              Authentication Service: Operational
+            </li>
+            <li>
+              <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                <path d="M12 8v4m0 4h.01M21 12a9 9 0 1 1-18 0 9 9 0 0118 0z" />
+              </svg>
+              Database Cluster: Reconnecting...
+            </li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- Game (Right) -->
+      <section class="game-section" aria-label="Snake game">
+        <div class="game-header">
+          <div class="game-icon" aria-hidden="true">
+            <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+              <path
+                d="M12 3c-4.97 0-9 4.03-9 9s4.03 9 9 9c1.5 0 2-.67 2-2 0-.52-.2-1-.6-1.4-.18-.2-.3-.45-.3-.73 0-.55.45-1 1-1h1.5c2.76 0 5-2.24 5-5C21 6.58 16.97 3 12 3z" />
+              <circle cx="8.5" cy="11.5" r="1.25" fill="currentColor" />
+            </svg>
+          </div>
+          <div>
+            <div class="game-title">Snake</div>
+          </div>
+        </div>
+        <p class="game-subtitle">
+          Collect the glowing orbs to grow. Don't hit the walls or yourself.
+        </p>
+
+        <div class="canvas-wrap">
+          <canvas id="gameCanvas" width="660" height="420"></canvas>
+        </div>
+
+        <div class="game-hud">
+          <div class="hud-item">
+            <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+              <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
+            </svg>
+            Score <span class="hud-val" id="scoreVal">0</span>
+          </div>
+          <div class="hud-item">
+            <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+              <path d="M8.21 13.89L7 23l5-3 5 3-1.21-9.12" />
+              <path d="M15 7a3 3 0 1 1-6 0 3 3 0 0 1 6 0z" />
+            </svg>
+            Best <span class="hud-val" id="bestVal">0</span>
+          </div>
+          <div class="hud-item">
+            <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+              <path d="M13 2 3 14h9l-1 8 10-12h-9l1-8z" />
+            </svg>
+            Level <span class="hud-val" id="levelVal">1</span>
+          </div>
+          <div class="hud-item">
+            Length <span class="hud-val" id="lengthVal">3</span>
+          </div>
+          <button class="game-btn" id="restartBtn">New Game</button>
+        </div>
+
+        <div class="controls-hint">
+          <div class="hint-group">
+            <span class="key">W</span><span class="key">A</span><span class="key">S</span><span class="key">D</span> or
+            <span class="key">←</span><span class="key">↑</span><span class="key">↓</span><span class="key">→</span> -
+            move
+          </div>
+          <div class="hint-group">Touch - swipe to turn</div>
+        </div>
+      </section>
+    </div>
+
+    <!-- Popular pages -->
+    <section class="popular">
+      <h3>Popular pages</h3>
+      <div class="links-grid">
+        <a href="/#features" class="link-chip"><svg fill="none" stroke="currentColor" stroke-width="2"
+            viewBox="0 0 24 24">
+            <path d="M5 12h14m-7-7 7 7-7 7" />
+          </svg>Features</a>
+        <a href="/#pricing" class="link-chip"><svg fill="none" stroke="currentColor" stroke-width="2"
+            viewBox="0 0 24 24">
+            <path d="M5 12h14m-7-7 7 7-7 7" />
+          </svg>Pricing</a>
+        <a href="/#developers" class="link-chip"><svg fill="none" stroke="currentColor" stroke-width="2"
+            viewBox="0 0 24 24">
+            <path d="M5 12h14m-7-7 7 7-7 7" />
+          </svg>Developers</a>
+        <a href="mailto:support@payzue.com?subject=Website%20Issue%20Reported%20%E2%80%93%20502%20Server%20Error&amp;body=Hi%20Payzue%20Team%2C%0A%0AI%20came%20across%20a%20502%20error%20while%20visiting%20your%20website.%20Wanted%20to%20bring%20this%20to%20your%20attention%20so%20it%20can%20be%20looked%20into%20at%20the%20earliest.%0A%0AThank%20you.%0A%0AWarm%20Regards" class="link-chip"><svg fill="none" stroke="currentColor"
+            stroke-width="2" viewBox="0 0 24 24">
+            <path d="M5 12h14m-7-7 7 7-7 7" />
+          </svg>Contact Support</a>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    // ── Theme ────────────────────────────────────────────────────────────────
+    (function () {
+      var t = document.getElementById("themeToggle");
+      var saved = localStorage.getItem("payzue.theme");
+      var dark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+      document.documentElement.setAttribute(
+        "data-theme",
+        saved || (dark ? "dark" : "light"),
+      );
+      t.addEventListener("click", function () {
+        var next =
+          document.documentElement.getAttribute("data-theme") === "dark"
+            ? "light"
+            : "dark";
+        document.documentElement.setAttribute("data-theme", next);
+        localStorage.setItem("payzue.theme", next);
+      });
+    })();
+
+    // ── Snake Game ────────────────────────────────────────────────────────────
+    (function () {
+      var canvas = document.getElementById("gameCanvas");
+      var ctx = canvas.getContext("2d");
+      var scoreEl = document.getElementById("scoreVal");
+      var bestEl = document.getElementById("bestVal");
+      var levelEl = document.getElementById("levelVal");
+      var lenEl = document.getElementById("lengthVal");
+
+      // Canvas sizing
+      function resize() {
+        var mw = Math.min(660, canvas.parentElement.clientWidth - 4);
+        canvas.style.width = mw + "px";
+        canvas.style.height = Math.round((mw * 420) / 660) + "px";
+      }
+      resize();
+      window.addEventListener("resize", resize);
+
+      // ── Constants ────────────────────────────────────────────────────────
+      var W = 660,
+        H = 420;
+      var CELL = 30;
+      var COLS = W / CELL; // 22
+      var ROWS = H / CELL; // 14
+      var MARGIN = 2; // inner padding per cell
+
+      // Speed curve: tick interval in ms per level
+      var SPEEDS = [140, 125, 110, 95, 80, 68, 58];
+
+      // ── Palette ──────────────────────────────────────────────────────────
+      var C = {
+        bg: "#0d0a14",
+        grid: "rgba(124, 58, 237,0.06)",
+        head: "#a78bfa",
+        headGlow: "rgba(167, 139, 250,0.7)",
+        bodyA: "#8b5cf6",
+        bodyB: "#4c1d95",
+        eye: "#ffffff",
+        food: "#ddd6fe",
+        foodGlow: "rgba(221, 214, 254,0.8)",
+        foodSpec: "#f59e0b",
+        foodSGlow: "rgba(245,158,11,0.8)",
+        overlay: "rgba(9,15,12,0.88)",
+        text: "#ddd6fe",
+        muted: "#c4b5fd",
+        btn: "#7c3aed",
+        btnGlow: "rgba(124, 58, 237,0.6)",
+        particle: ["#a78bfa", "#8b5cf6", "#ddd6fe", "#c4b5fd"],
+      };
+
+      // ── State ────────────────────────────────────────────────────────────
+      var snake, dir, nextDir, food, score, best, level, foodEaten;
+      var state; // 'idle' | 'playing' | 'paused' | 'dead'
+      var tickTimer; // setInterval handle
+      var particles;
+
+      best = parseInt(localStorage.getItem("snake-best") || "0");
+      bestEl.textContent = best;
+
+      // ── Init ─────────────────────────────────────────────────────────────
+      function initGame() {
+        clearInterval(tickTimer);
+        score = 0;
+        level = 1;
+        foodEaten = 0;
+        particles = [];
+        dir = { x: 1, y: 0 };
+        nextDir = { x: 1, y: 0 };
+        // Start at centre, length 3, facing right
+        var cx = Math.floor(COLS / 2),
+          cy = Math.floor(ROWS / 2);
+        snake = [
+          { x: cx, y: cy },
+          { x: cx - 1, y: cy },
+          { x: cx - 2, y: cy },
+        ];
+        spawnFood();
+        updateHUD();
+        state = "idle";
+      }
+
+      // ── Food ─────────────────────────────────────────────────────────────
+      var specialNext = false; // next food is special?
+
+      function spawnFood() {
+        specialNext = foodEaten > 0 && foodEaten % 5 === 0;
+        var attempts = 0,
+          fx,
+          fy,
+          ok;
+        do {
+          fx = Math.floor(Math.random() * COLS);
+          fy = Math.floor(Math.random() * ROWS);
+          ok = !snake.some(function (s) {
+            return s.x === fx && s.y === fy;
+          });
+          attempts++;
+        } while (!ok && attempts < 500);
+        food = { x: fx, y: fy, special: specialNext };
+      }
+
+      // ── Speed ─────────────────────────────────────────────────────────────
+      function startTick() {
+        clearInterval(tickTimer);
+        var interval = SPEEDS[Math.min(level - 1, SPEEDS.length - 1)];
+        tickTimer = setInterval(tick, interval);
+      }
+
+      // ── Tick (game logic only) ────────────────────────────────────────────
+      function tick() {
+        if (state !== "playing") return;
+
+        // Apply queued direction (prevent 180° reversal)
+        if (
+          !(nextDir.x === -dir.x && nextDir.y === -dir.y) &&
+          !(nextDir.x === 0 && nextDir.y === 0)
+        ) {
+          dir = { x: nextDir.x, y: nextDir.y };
+        }
+
+        var head = snake[0];
+        var nx = head.x + dir.x;
+        var ny = head.y + dir.y;
+
+        // Wall collision
+        if (nx < 0 || nx >= COLS || ny < 0 || ny >= ROWS) {
+          die();
+          return;
+        }
+        // Self collision (skip tail - it will move)
+        for (var i = 0; i < snake.length - 1; i++) {
+          if (snake[i].x === nx && snake[i].y === ny) {
+            die();
+            return;
+          }
+        }
+
+        // Move: prepend new head
+        snake.unshift({ x: nx, y: ny });
+
+        // Food collision
+        if (nx === food.x && ny === food.y) {
+          var pts = food.special ? 30 : 10;
+          score += pts;
+          foodEaten++;
+          spawnParticlesAt(
+            food.x * CELL + CELL / 2,
+            food.y * CELL + CELL / 2,
+            food.special ? C.foodSpec : C.food,
+          );
+          // Level up every 5 food
+          var newLevel = Math.min(
+            SPEEDS.length,
+            Math.floor(foodEaten / 5) + 1,
+          );
+          if (newLevel > level) {
+            level = newLevel;
+            startTick();
+          }
+          spawnFood();
+          // Don't pop tail - snake grows
+        } else {
+          snake.pop(); // remove tail → snake stays same length
+        }
+
+        if (score > best) {
+          best = score;
+          localStorage.setItem("snake-best", best);
+        }
+        updateHUD();
+      }
+
+      function die() {
+        state = "dead";
+        clearInterval(tickTimer);
+        // Burst particles along snake
+        snake.forEach(function (s, i) {
+          if (i % 2 === 0)
+            spawnParticlesAt(
+              s.x * CELL + CELL / 2,
+              s.y * CELL + CELL / 2,
+              C.bodyA,
+              6,
+            );
+        });
+      }
+
+      function updateHUD() {
+        scoreEl.textContent = score;
+        bestEl.textContent = best;
+        levelEl.textContent = level;
+        lenEl.textContent = snake.length;
+      }
+
+      // ── Particles ────────────────────────────────────────────────────────
+      function spawnParticlesAt(x, y, color, n) {
+        n = n || 14;
+        for (var i = 0; i < n; i++) {
+          var a = ((Math.PI * 2) / n) * i + Math.random() * 0.5;
+          var s = 1.5 + Math.random() * 3.5;
+          particles.push({
+            x: x,
+            y: y,
+            vx: Math.cos(a) * s,
+            vy: Math.sin(a) * s,
+            life: 1,
+            decay: 0.025 + Math.random() * 0.02,
+            r: 1.5 + Math.random() * 2.5,
+            color:
+              color ||
+              C.particle[Math.floor(Math.random() * C.particle.length)],
+          });
+        }
+      }
+
+      // ── Drawing helpers ───────────────────────────────────────────────────
+      function roundRect(x, y, w, h, r) {
+        ctx.beginPath();
+        ctx.roundRect(x, y, w, h, r);
+        ctx.fill();
+      }
+
+      function lerp(a, b, t) {
+        return a + (b - a) * t;
+      }
+
+      function hexToRgb(hex) {
+        var r = parseInt(hex.slice(1, 3), 16);
+        var g = parseInt(hex.slice(3, 5), 16);
+        var b = parseInt(hex.slice(5, 7), 16);
+        return [r, g, b];
+      }
+
+      var rgbHead = hexToRgb("#a78bfa"); // #a78bfa
+      var rgbTail = hexToRgb("#4c1d95"); // #4c1d95
+
+      function segmentColor(i, len) {
+        var t = len <= 1 ? 0 : i / (len - 1);
+        var r = Math.round(lerp(rgbHead[0], rgbTail[0], t));
+        var g = Math.round(lerp(rgbHead[1], rgbTail[1], t));
+        var b = Math.round(lerp(rgbHead[2], rgbTail[2], t));
+        return "rgb(" + r + "," + g + "," + b + ")";
+      }
+
+      // ── Draw background ───────────────────────────────────────────────────
+      function drawBg() {
+        ctx.fillStyle = C.bg;
+        ctx.fillRect(0, 0, W, H);
+        // Dot grid
+        ctx.fillStyle = C.grid;
+        for (var x = CELL / 2; x < W; x += CELL) {
+          for (var y = CELL / 2; y < H; y += CELL) {
+            ctx.beginPath();
+            ctx.arc(x, y, 1, 0, Math.PI * 2);
+            ctx.fill();
+          }
+        }
+      }
+
+      // ── Draw food ─────────────────────────────────────────────────────────
+      function drawFood() {
+        var pulse = Math.sin(Date.now() / 280) * 0.18 + 0.82; // 0.64 – 1.0
+        var fx = food.x * CELL + CELL / 2;
+        var fy = food.y * CELL + CELL / 2;
+        var color = food.special ? C.foodSpec : C.food;
+        var glowC = food.special ? C.foodSGlow : C.foodGlow;
+        var r = (CELL / 2 - 4) * pulse;
+
+        ctx.save();
+        ctx.shadowColor = glowC;
+        ctx.shadowBlur = 14;
+        ctx.fillStyle = color;
+        // 4-pointed star (two rotated squares)
+        ctx.translate(fx, fy);
+        ctx.rotate((Math.PI / 4) * ((Date.now() / 2000) % 1) * 8); // slow spin
+        ctx.beginPath();
+        for (var p = 0; p < 4; p++) {
+          var a1 = (Math.PI / 2) * p;
+          var a2 = a1 + Math.PI / 4;
+          ctx.lineTo(Math.cos(a1) * r, Math.sin(a1) * r);
+          ctx.lineTo(Math.cos(a2) * r * 0.42, Math.sin(a2) * r * 0.42);
+        }
+        ctx.closePath();
+        ctx.fill();
+        ctx.restore();
+        ctx.shadowBlur = 0;
+      }
+
+      // ── Draw snake ────────────────────────────────────────────────────────
+      function drawSnake() {
+        var len = snake.length;
+        for (var i = len - 1; i >= 0; i--) {
+          var s = snake[i];
+          var sx = s.x * CELL + MARGIN;
+          var sy = s.y * CELL + MARGIN;
+          var sw = CELL - MARGIN * 2;
+          var sh = CELL - MARGIN * 2;
+
+          // Taper tail
+          if (i === len - 1 && len > 2) {
+            var taper = 4;
+            sx += taper / 2;
+            sy += taper / 2;
+            sw -= taper;
+            sh -= taper;
+          }
+
+          if (i === 0) {
+            // Head with glow
+            ctx.shadowColor = C.headGlow;
+            ctx.shadowBlur = 12;
+            ctx.fillStyle = C.head;
+          } else {
+            ctx.shadowBlur = 0;
+            ctx.fillStyle = segmentColor(i, len);
+          }
+          roundRect(sx, sy, sw, sh, i === 0 ? 8 : 5);
+          ctx.shadowBlur = 0;
+
+          // Eyes on head
+          if (i === 0) {
+            var cx = s.x * CELL + CELL / 2;
+            var cy = s.y * CELL + CELL / 2;
+            // Offset eyes toward direction of movement
+            var ex = dir.x,
+              ey = dir.y;
+            var perp = { x: -ey, y: ex };
+            var eyeR = 2.5;
+            var eyeOff = 4.5;
+            ctx.fillStyle = C.eye;
+            ctx.beginPath();
+            ctx.arc(
+              cx + ex * eyeOff + perp.x * 4,
+              cy + ey * eyeOff + perp.y * 4,
+              eyeR,
+              0,
+              Math.PI * 2,
+            );
+            ctx.fill();
+            ctx.beginPath();
+            ctx.arc(
+              cx + ex * eyeOff - perp.x * 4,
+              cy + ey * eyeOff - perp.y * 4,
+              eyeR,
+              0,
+              Math.PI * 2,
+            );
+            ctx.fill();
+            // Pupils
+            ctx.fillStyle = "#150a24";
+            ctx.beginPath();
+            ctx.arc(
+              cx + ex * eyeOff + perp.x * 4 + ex,
+              cy + ey * eyeOff + perp.y * 4 + ey,
+              1.2,
+              0,
+              Math.PI * 2,
+            );
+            ctx.fill();
+            ctx.beginPath();
+            ctx.arc(
+              cx + ex * eyeOff - perp.x * 4 + ex,
+              cy + ey * eyeOff - perp.y * 4 + ey,
+              1.2,
+              0,
+              Math.PI * 2,
+            );
+            ctx.fill();
+          }
+        }
+      }
+
+      // ── Draw particles ────────────────────────────────────────────────────
+      function drawParticles() {
+        var alive = [];
+        for (var i = 0; i < particles.length; i++) {
+          var p = particles[i];
+          p.x += p.vx;
+          p.y += p.vy;
+          p.vy += 0.06;
+          p.life -= p.decay;
+          if (p.life <= 0) continue;
+          ctx.globalAlpha = p.life;
+          ctx.fillStyle = p.color;
+          ctx.fillRect(p.x - p.r / 2, p.y - p.r / 2, p.r, p.r);
+          alive.push(p);
+        }
+        ctx.globalAlpha = 1;
+        particles = alive;
+      }
+
+      // ── Overlay drawing ───────────────────────────────────────────────────
+      var BTN = { x: W / 2 - 70, y: H / 2 + 24, w: 140, h: 36 };
+
+      function drawOverlay(heading, sub, btnLabel) {
+        ctx.fillStyle = C.overlay;
+        ctx.fillRect(0, 0, W, H);
+        ctx.textAlign = "center";
+        ctx.fillStyle = C.text;
+        ctx.font = "700 26px Syne,sans-serif";
+        ctx.fillText(heading, W / 2, H / 2 - 28);
+        if (sub) {
+          ctx.fillStyle = C.muted;
+          ctx.font = "500 13px Inter,sans-serif";
+          ctx.fillText(sub, W / 2, H / 2 + 2);
+        }
+        // Button
+        ctx.shadowColor = C.btnGlow;
+        ctx.shadowBlur = 10;
+        ctx.fillStyle = C.btn;
+        ctx.beginPath();
+        ctx.roundRect(BTN.x, BTN.y, BTN.w, BTN.h, 8);
+        ctx.fill();
+        ctx.shadowBlur = 0;
+        ctx.fillStyle = "#fff";
+        ctx.font = "600 13px Inter,sans-serif";
+        ctx.fillText(btnLabel, W / 2, BTN.y + BTN.h / 2 + 5);
+        ctx.textAlign = "left";
+      }
+
+      function drawPauseOverlay() {
+        ctx.fillStyle = "rgba(9,15,12,0.7)";
+        ctx.fillRect(0, 0, W, H);
+        ctx.textAlign = "center";
+        ctx.fillStyle = C.text;
+        ctx.font = "700 22px Syne,sans-serif";
+        ctx.fillText("Paused", W / 2, H / 2 - 10);
+        ctx.fillStyle = C.muted;
+        ctx.font = "500 13px Inter,sans-serif";
+        ctx.fillText("Press Space or P to resume", W / 2, H / 2 + 14);
+        ctx.textAlign = "left";
+      }
+
+      // ── Render loop (RAF - always running) ────────────────────────────────
+      function render() {
+        requestAnimationFrame(render);
+        drawBg();
+        drawFood();
+        if (snake && snake.length) drawSnake();
+        drawParticles();
+
+        if (state === "idle") {
+          drawOverlay("Snake", "Press Space or click to start", "Start");
+        } else if (state === "paused") {
+          drawPauseOverlay();
+        } else if (state === "dead") {
+          drawOverlay(
+            "Game Over",
+            "Score: " + score + "   Best: " + best,
+            "Play Again",
+          );
+        }
+      }
+
+      // ── Input ─────────────────────────────────────────────────────────────
+      var DIRS = {
+        ArrowUp: { x: 0, y: -1 },
+        w: { x: 0, y: -1 },
+        W: { x: 0, y: -1 },
+        ArrowDown: { x: 0, y: 1 },
+        s: { x: 0, y: 1 },
+        S: { x: 0, y: 1 },
+        ArrowLeft: { x: -1, y: 0 },
+        a: { x: -1, y: 0 },
+        A: { x: -1, y: 0 },
+        ArrowRight: { x: 1, y: 0 },
+        d: { x: 1, y: 0 },
+        D: { x: 1, y: 0 },
+      };
+
+      document.addEventListener("keydown", function (e) {
+        if (e.key === " " || e.key === "Spacebar") {
+          e.preventDefault();
+          handleAction();
+          return;
+        }
+        if (e.key === "p" || e.key === "P") {
+          if (state === "playing") {
+            state = "paused";
+            clearInterval(tickTimer);
+          } else if (state === "paused") {
+            state = "playing";
+            startTick();
+          }
+          return;
+        }
+        var d = DIRS[e.key];
+        if (d && state === "playing") {
+          e.preventDefault();
+          // Only queue if not opposite to current direction
+          if (!(d.x === -dir.x && d.y === -dir.y)) {
+            nextDir = d;
+          }
+        }
+      });
+
+      function handleAction() {
+        if (state === "idle" || state === "dead") {
+          initGame();
+          state = "playing";
+          startTick();
+        } else if (state === "playing") {
+          state = "paused";
+          clearInterval(tickTimer);
+        } else if (state === "paused") {
+          state = "playing";
+          startTick();
+        }
+      }
+
+      // Canvas click - start/restart or overlay button
+      canvas.addEventListener("click", function (e) {
+        var rect = canvas.getBoundingClientRect();
+        var sx = W / rect.width;
+        var sy = H / rect.height;
+        var cx = (e.clientX - rect.left) * sx;
+        var cy = (e.clientY - rect.top) * sy;
+        // Check overlay button
+        if (
+          cy > BTN.y &&
+          cy < BTN.y + BTN.h &&
+          cx > BTN.x &&
+          cx < BTN.x + BTN.w
+        ) {
+          handleAction();
+          return;
+        }
+        if (state === "idle" || state === "dead") handleAction();
+        else if (state === "playing") {
+          state = "paused";
+          clearInterval(tickTimer);
+        } else if (state === "paused") {
+          state = "playing";
+          startTick();
+        }
+      });
+
+      // Restart button (HUD)
+      document
+        .getElementById("restartBtn")
+        .addEventListener("click", function () {
+          initGame();
+          state = "playing";
+          startTick();
+        });
+
+      // Touch swipe
+      var tStart = null;
+      canvas.addEventListener(
+        "touchstart",
+        function (e) {
+          e.preventDefault();
+          tStart = { x: e.touches[0].clientX, y: e.touches[0].clientY };
+        },
+        { passive: false },
+      );
+
+      canvas.addEventListener(
+        "touchend",
+        function (e) {
+          e.preventDefault();
+          if (!tStart) return;
+          var dx = e.changedTouches[0].clientX - tStart.x;
+          var dy = e.changedTouches[0].clientY - tStart.y;
+          tStart = null;
+
+          // Minimum swipe threshold
+          if (Math.abs(dx) < 12 && Math.abs(dy) < 12) {
+            handleAction(); // tap = start/pause toggle
+            return;
+          }
+
+          if (state !== "playing") {
+            handleAction();
+            return;
+          }
+
+          var d;
+          if (Math.abs(dx) > Math.abs(dy)) {
+            d = dx > 0 ? { x: 1, y: 0 } : { x: -1, y: 0 };
+          } else {
+            d = dy > 0 ? { x: 0, y: 1 } : { x: 0, y: -1 };
+          }
+          if (!(d.x === -dir.x && d.y === -dir.y)) nextDir = d;
+        },
+        { passive: false },
+      );
+
+      // ── Start ─────────────────────────────────────────────────────────────
+      initGame();
+      render(); // Render loop starts - game waits for player input
+    })();
+  </script>
+</body>
+
+</html>

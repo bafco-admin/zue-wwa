@@ -1,0 +1,13 @@
+# robots.txt — Payzue
+# https://thepayzue.com/robots.txt
+# Spec: https://www.robotstxt.org/robotstxt.html
+
+User-agent: *
+Allow: /
+
+# Block error pages from indexing
+Disallow: /404.html
+Disallow: /502.html
+
+# Sitemap location (absolute URL required per spec)
+Sitemap: https://thepayzue.com/sitemap.xml

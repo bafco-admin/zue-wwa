@@ -1,0 +1,889 @@
+<!doctype html>
+<html lang="en" data-theme="light">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="color-scheme" content="light dark" />
+    <title>Terms of Service · Payzue</title>
+    <meta
+      name="description"
+      content="The terms and conditions governing use of Payzue's payment infrastructure platform and services."
+    />
+    <link rel="canonical" href="https://thepayzue.com/terms-of-service.html" />
+    <meta name="robots" content="noindex, follow" />
+    <link rel="icon" type="image/png" sizes="48x48" href="favicon-48x48.png" />
+    <link rel="icon" type="image/png" sizes="192x192" href="favicon-192x192.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png" />
+    <link rel="icon" href="favicon.ico" type="image/x-icon" sizes="32x32" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,900;1,900&family=Inter:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      :root {
+        --bg: #fafaf9;
+        --surface: #f5f4f2;
+        --ink: #0c0a09;
+        --muted: #64748b;
+        --border: #e7e5e4;
+        --accent: #5b21b6;
+        --accent-light: #7c3aed;
+        --accent-amber: #f59e0b;
+        --success: #16a34a;
+        --nav-height: 72px;
+      }
+
+      html[data-theme="dark"] {
+        --bg: #090b0a;
+        --surface: #181b19;
+        --ink: #fafafa;
+        --muted: #a1a1aa;
+        --border: #27272a;
+        --accent: #8b5cf6;
+        --accent-light: #a78bfa;
+        --accent-amber: #f59e0b;
+        --success: #22c55e;
+      }
+
+      html {
+        scroll-behavior: smooth;
+      }
+
+      body {
+        font-family:
+          "Inter",
+          -apple-system,
+          BlinkMacSystemFont,
+          "Segoe UI",
+          Roboto,
+          sans-serif;
+        color: var(--ink);
+        background: var(--bg);
+        line-height: 1.65;
+        -webkit-font-smoothing: antialiased;
+      }
+
+      h1,
+      h2,
+      h3,
+      .legal-title {
+        font-family: "Montserrat", sans-serif;
+        font-weight: 700;
+      }
+
+      a {
+        color: var(--accent-light);
+      }
+
+      .container {
+        max-width: 1280px;
+        margin: 0 auto;
+        padding: 0 clamp(20px, 5vw, 40px);
+      }
+
+      /* Header */
+      header {
+        position: sticky;
+        top: 0;
+        z-index: 100;
+        background: rgba(255, 255, 255, 0.8);
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+        border-bottom: 1px solid var(--border);
+      }
+
+      html[data-theme="dark"] header {
+        background: rgba(0, 0, 0, 0.8);
+      }
+
+      nav {
+        height: var(--nav-height);
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+      }
+
+      .logo {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        text-decoration: none;
+        z-index: 110;
+      }
+
+      .logo img {
+        width: auto;
+        height: 32px;
+      }
+
+      .logo-dark {
+        display: none;
+      }
+
+      html[data-theme="dark"] .logo-dark {
+        display: block;
+      }
+
+      html[data-theme="dark"] .logo-light {
+        display: none;
+      }
+
+      .nav-actions {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+
+      .nav-home {
+        font-size: 0.88rem;
+        font-weight: 600;
+        color: var(--ink);
+        text-decoration: none;
+        padding: 0.5rem 0.9rem;
+        border-radius: 8px;
+        transition: background 0.2s;
+      }
+
+      .nav-home:hover {
+        background: var(--surface);
+      }
+
+      .theme-toggle {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 38px;
+        height: 38px;
+        border-radius: 8px;
+        background: var(--surface);
+        border: 1px solid var(--border);
+        cursor: pointer;
+        color: var(--muted);
+        transition: all 0.2s;
+      }
+
+      .theme-toggle:hover {
+        background: var(--accent);
+        border-color: var(--accent);
+        color: white;
+      }
+
+      .theme-toggle svg {
+        width: 18px;
+        height: 18px;
+      }
+
+      .theme-icon {
+        display: none;
+      }
+
+      html[data-theme="light"] .theme-icon-sun {
+        display: block;
+      }
+
+      html[data-theme="dark"] .theme-icon-moon {
+        display: block;
+      }
+
+      /* Hero */
+      .legal-hero {
+        padding: clamp(48px, 8vh, 80px) 0 clamp(32px, 5vh, 56px);
+        border-bottom: 1px solid var(--border);
+      }
+
+      .legal-eyebrow {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        font-size: 0.78rem;
+        font-weight: 700;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        color: var(--accent-light);
+        margin-bottom: 1rem;
+      }
+
+      .legal-title {
+        font-size: clamp(2rem, 4vw, 3rem);
+        letter-spacing: -0.02em;
+        margin-bottom: 0.85rem;
+      }
+
+      .legal-meta {
+        color: var(--muted);
+        font-size: 0.95rem;
+      }
+
+      /* Body layout */
+      .legal-layout {
+        display: grid;
+        grid-template-columns: 260px 1fr;
+        gap: clamp(32px, 5vw, 72px);
+        padding: clamp(40px, 6vh, 72px) 0 clamp(80px, 10vh, 140px);
+        align-items: start;
+      }
+
+      .legal-toc {
+        position: sticky;
+        top: calc(var(--nav-height) + 24px);
+        border: 1px solid var(--border);
+        border-radius: 14px;
+        padding: 1.25rem;
+        background: var(--surface);
+      }
+
+      .legal-toc-title {
+        font-size: 0.72rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+        color: var(--muted);
+        margin-bottom: 0.9rem;
+      }
+
+      .legal-toc ol {
+        list-style: none;
+        display: flex;
+        flex-direction: column;
+        gap: 0.55rem;
+        counter-reset: toc;
+      }
+
+      .legal-toc a {
+        counter-increment: toc;
+        display: flex;
+        gap: 0.55rem;
+        font-size: 0.85rem;
+        color: var(--ink);
+        text-decoration: none;
+        line-height: 1.4;
+      }
+
+      .legal-toc a::before {
+        content: counter(toc);
+        flex-shrink: 0;
+        width: 20px;
+        height: 20px;
+        border-radius: 6px;
+        background: var(--bg);
+        border: 1px solid var(--border);
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 0.68rem;
+        font-weight: 700;
+        color: var(--muted);
+      }
+
+      .legal-toc a:hover {
+        color: var(--accent-light);
+      }
+
+      .legal-body {
+        min-width: 0;
+        max-width: 760px;
+      }
+
+      .legal-body section {
+        padding-top: clamp(28px, 4vh, 44px);
+        margin-top: clamp(28px, 4vh, 44px);
+        border-top: 1px solid var(--border);
+        scroll-margin-top: calc(var(--nav-height) + 16px);
+      }
+
+      .legal-body section:first-of-type {
+        padding-top: 0;
+        margin-top: 0;
+        border-top: none;
+      }
+
+      .legal-body h2 {
+        font-size: 1.3rem;
+        margin-bottom: 1rem;
+        display: flex;
+        align-items: baseline;
+        gap: 0.6rem;
+      }
+
+      .legal-body h2 .num {
+        font-size: 0.9rem;
+        color: var(--accent-light);
+        font-family: "JetBrains Mono", "Inter", monospace;
+      }
+
+      .legal-body h3 {
+        font-size: 1.02rem;
+        margin: 1.4rem 0 0.6rem;
+      }
+
+      .legal-body p {
+        color: var(--ink);
+        opacity: 0.92;
+        margin-bottom: 0.9rem;
+        font-size: 0.96rem;
+      }
+
+      .legal-body ul,
+      .legal-body ol.alpha {
+        margin: 0 0 0.9rem 1.4rem;
+        color: var(--ink);
+        opacity: 0.92;
+        font-size: 0.96rem;
+      }
+
+      .legal-body li {
+        margin-bottom: 0.45rem;
+      }
+
+      .legal-body strong {
+        font-weight: 700;
+      }
+
+      .legal-callout {
+        background: var(--surface);
+        border: 1px solid var(--border);
+        border-left: 3px solid var(--accent-light);
+        border-radius: 10px;
+        padding: 1rem 1.25rem;
+        margin: 1rem 0;
+        font-size: 0.9rem;
+        color: var(--muted);
+      }
+
+      .legal-contact-box {
+        background: var(--surface);
+        border: 1px solid var(--border);
+        border-radius: 14px;
+        padding: 1.5rem;
+        font-size: 0.92rem;
+      }
+
+      .legal-contact-box a {
+        color: var(--accent-light);
+        font-weight: 600;
+        text-decoration: none;
+      }
+
+      @media (max-width: 900px) {
+        .legal-layout {
+          grid-template-columns: 1fr;
+        }
+
+        .legal-toc {
+          position: static;
+        }
+      }
+
+      /* Footer */
+      footer {
+        border-top: 1px solid var(--border);
+        padding: 2.5rem 0;
+        background: var(--surface);
+      }
+
+      .footer-bottom {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: space-between;
+        gap: 1rem;
+      }
+
+      .footer-bottom-links {
+        display: flex;
+        gap: 1.5rem;
+        flex-wrap: wrap;
+      }
+
+      .footer-bottom-links a {
+        font-size: 0.85rem;
+        color: var(--muted);
+        text-decoration: none;
+      }
+
+      .footer-bottom-links a:hover {
+        color: var(--accent-light);
+      }
+
+      .footer-copyright {
+        font-size: 0.85rem;
+        color: var(--muted);
+      }
+    </style>
+  </head>
+
+  <body>
+    <header>
+      <nav class="container">
+        <a href="index.html" class="logo">
+          <img src="payzueindigo.png" alt="Payzue" class="logo-light" />
+          <img src="payzuewhite.png" alt="Payzue" class="logo-dark" />
+        </a>
+        <div class="nav-actions">
+          <a href="index.html" class="nav-home">Home</a>
+          <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
+            <svg
+              class="theme-icon theme-icon-sun"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              viewBox="0 0 24 24"
+            >
+              <circle cx="12" cy="12" r="5" />
+              <path
+                d="M12 1v2m0 18v2M4.22 4.22l1.42 1.42m12.72 12.72l1.42 1.42M1 12h2m18 0h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"
+              />
+            </svg>
+            <svg
+              class="theme-icon theme-icon-moon"
+              fill="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" />
+            </svg>
+          </button>
+        </div>
+      </nav>
+    </header>
+
+    <main>
+      <section class="legal-hero">
+        <div class="container">
+          <span class="legal-eyebrow">Legal</span>
+          <h1 class="legal-title">Terms of Service</h1>
+          <p class="legal-meta">
+            Effective date: July 16, 2026 &middot; Last updated: July 16, 2026
+          </p>
+        </div>
+      </section>
+
+      <div class="container">
+        <div class="legal-layout">
+          <aside class="legal-toc" aria-label="Table of contents">
+            <div class="legal-toc-title">On this page</div>
+            <ol>
+              <li><a href="#acceptance">Acceptance of Terms</a></li>
+              <li><a href="#services">Description of Services</a></li>
+              <li><a href="#eligibility">Eligibility &amp; Account Registration</a></li>
+              <li><a href="#acceptable-use">Acceptable Use &amp; Prohibited Activities</a></li>
+              <li><a href="#fees">Fees, Settlement &amp; Refunds</a></li>
+              <li><a href="#compliance">Compliance &amp; KYC Obligations</a></li>
+              <li><a href="#ip">Intellectual Property</a></li>
+              <li><a href="#confidentiality">Confidentiality</a></li>
+              <li><a href="#warranties">Disclaimers &amp; Warranties</a></li>
+              <li><a href="#liability">Limitation of Liability</a></li>
+              <li><a href="#indemnification">Indemnification</a></li>
+              <li><a href="#suspension">Suspension &amp; Termination</a></li>
+              <li><a href="#disputes">Governing Law &amp; Dispute Resolution</a></li>
+              <li><a href="#force-majeure">Force Majeure</a></li>
+              <li><a href="#changes">Changes to these Terms</a></li>
+              <li><a href="#general">General Provisions</a></li>
+              <li><a href="#contact">Contact Us</a></li>
+            </ol>
+          </aside>
+
+          <article class="legal-body">
+            <section id="acceptance">
+              <h2><span class="num">01</span> Acceptance of Terms</h2>
+              <p>
+                These Terms of Service ("<strong>Terms</strong>") constitute a legally
+                binding agreement between you ("<strong>Merchant</strong>," "<strong>you</strong>,"
+                or "<strong>your</strong>") and Payzue Technologies Pvt. Ltd., a company
+                incorporated under the laws of India
+                ("<strong>Payzue</strong>," "<strong>we</strong>," "<strong>us</strong>,"
+                or "<strong>our</strong>"), governing your access to and use of the
+                Payzue website, application programming interfaces, dashboard,
+                software development kits, and related payment processing services
+                (collectively, the "<strong>Services</strong>").
+              </p>
+              <p>
+                By creating an account, integrating our APIs, clicking "I Agree," or
+                otherwise accessing or using the Services, you acknowledge that you
+                have read, understood, and agree to be bound by these Terms and our
+                <a href="privacy-policy.html">Privacy Policy</a>, which is incorporated
+                herein by reference. If you are entering into these Terms on behalf of
+                a company or other legal entity, you represent that you have the
+                authority to bind that entity, in which case "you" refers to that
+                entity.
+              </p>
+              <p>
+                If you do not agree to these Terms, you must not access or use the
+                Services.
+              </p>
+            </section>
+
+            <section id="services">
+              <h2><span class="num">02</span> Description of Services</h2>
+              <p>
+                Payzue provides a payment processing infrastructure that enables
+                Merchants to accept payments from their customers through Unified
+                Payments Interface (UPI), net banking, and other payment instruments
+                supported from time to time, together with ancillary services such as
+                transaction reporting, settlement, webhooks, reconciliation tooling,
+                and developer documentation.
+              </p>
+              <p>
+                Payzue acts as a technology and payment aggregation intermediary. We
+                are not a bank and do not hold a banking license. Settlement of funds
+                is facilitated through Payzue's partner banks and the National
+                Payments Corporation of India ("<strong>NPCI</strong>") network, and is
+                subject to the operating rules of those networks and applicable
+                Reserve Bank of India ("<strong>RBI</strong>") guidelines.
+              </p>
+              <p>
+                We reserve the right to modify, suspend, or discontinue any part of
+                the Services, including the availability of any feature, at any time,
+                with or without notice, and shall not be liable to you or any third
+                party for any such modification, suspension, or discontinuation,
+                except where prohibited by applicable law.
+              </p>
+            </section>
+
+            <section id="eligibility">
+              <h2><span class="num">03</span> Eligibility &amp; Account Registration</h2>
+              <p>To use the Services, you must:</p>
+              <ul>
+                <li>Be at least 18 years of age and capable of entering into a binding contract under the Indian Contract Act, 1872;</li>
+                <li>Be a duly registered and validly existing business entity, sole proprietorship, partnership, or company under applicable Indian law;</li>
+                <li>Complete Payzue's merchant onboarding and Know Your Customer ("KYC") verification process, including providing accurate business, banking, and identity documentation; and</li>
+                <li>Not be barred from using payment services under any applicable law, sanction, or RBI directive.</li>
+              </ul>
+              <p>
+                You are responsible for maintaining the confidentiality of your API
+                keys, account credentials, and any activity that occurs under your
+                account. You must notify us immediately at
+                <a href="mailto:support@payzue.com">support@payzue.com</a> of any
+                unauthorized use of your account or any other breach of security.
+                Payzue is not liable for any loss or damage arising from your failure
+                to safeguard your credentials.
+              </p>
+            </section>
+
+            <section id="acceptable-use">
+              <h2><span class="num">04</span> Acceptable Use &amp; Prohibited Activities</h2>
+              <p>
+                You agree to use the Services solely for lawful purposes and in
+                accordance with these Terms. Without limiting the foregoing, you shall
+                not use, and shall not permit any third party to use, the Services to
+                process transactions for, or in connection with:
+              </p>
+              <ul>
+                <li>Illegal goods, services, or activities under Indian or applicable international law;</li>
+                <li>Unlicensed gambling, betting, lottery, or games of chance;</li>
+                <li>Counterfeit goods, unlicensed pharmaceuticals, or controlled substances;</li>
+                <li>Multi-level marketing, pyramid, or Ponzi schemes;</li>
+                <li>Money laundering, terrorist financing, or any activity prohibited under the Prevention of Money Laundering Act, 2002;</li>
+                <li>Adult content, escort services, or any sexually exploitative material;</li>
+                <li>Cryptocurrency exchange or trading services not expressly permitted in writing by Payzue; or</li>
+                <li>Any business that infringes the intellectual property or privacy rights of a third party.</li>
+              </ul>
+              <p>
+                Payzue reserves the right, at its sole discretion, to refuse,
+                suspend, or terminate processing for any transaction or Merchant it
+                reasonably believes violates this Section, poses undue financial or
+                reputational risk, or is required by a payment network, banking
+                partner, or regulator.
+              </p>
+            </section>
+
+            <section id="fees">
+              <h2><span class="num">05</span> Fees, Settlement &amp; Refunds</h2>
+              <p>
+                Fees for the Services are set out in your applicable pricing plan or
+                order form and may include transaction processing fees, settlement
+                fees, and other charges disclosed at the time of onboarding. Payzue
+                may revise its fees upon no less than thirty (30) days' prior written
+                notice, except where a shorter period is required to comply with a
+                change in law or network rules.
+              </p>
+              <p>
+                Settlement of collected funds, net of applicable fees, will be
+                credited to your designated bank account in accordance with the
+                settlement cycle specified in your plan (for example, T+1). Payzue
+                may withhold, delay, or reverse settlement where required to
+                investigate suspected fraud, comply with a legal or regulatory
+                request, or recover amounts owed to Payzue, including chargebacks and
+                refunds.
+              </p>
+              <p>
+                You are solely responsible for your refund policy and its
+                communication to your customers. Refunds initiated through the
+                Payzue dashboard or API will be processed to the original payment
+                instrument in accordance with NPCI and bank partner timelines, which
+                Payzue does not control.
+              </p>
+            </section>
+
+            <section id="compliance">
+              <h2><span class="num">06</span> Compliance &amp; KYC Obligations</h2>
+              <p>
+                You agree to comply with all applicable laws, regulations, and
+                network rules, including RBI guidelines on payment aggregators and
+                payment gateways, NPCI procedural guidelines for UPI, the Prevention
+                of Money Laundering Act, 2002, and the Information Technology Act,
+                2000, as amended from time to time.
+              </p>
+              <p>
+                You shall promptly provide any documentation or information
+                reasonably requested by Payzue to satisfy its own KYC, anti-money
+                laundering, and regulatory reporting obligations. Failure to do so
+                may result in suspension of your account pending resolution.
+              </p>
+            </section>
+
+            <section id="ip">
+              <h2><span class="num">07</span> Intellectual Property</h2>
+              <p>
+                Payzue and its licensors retain all right, title, and interest in
+                and to the Services, including all software, APIs, documentation,
+                trademarks, and logos (collectively, "<strong>Payzue IP</strong>").
+                Subject to your compliance with these Terms, Payzue grants you a
+                limited, non-exclusive, non-transferable, revocable license to
+                access and use the Payzue IP solely to integrate with and use the
+                Services for your internal business purposes.
+              </p>
+              <p>
+                You retain all rights to your own trademarks, content, and data. You
+                grant Payzue a limited license to use your name and logo solely to
+                identify you as a Payzue customer in marketing materials, unless you
+                opt out by written notice.
+              </p>
+            </section>
+
+            <section id="confidentiality">
+              <h2><span class="num">08</span> Confidentiality</h2>
+              <p>
+                Each party agrees to protect the other party's Confidential
+                Information using the same degree of care it uses to protect its own
+                confidential information of similar nature, but in no event less
+                than reasonable care, and not to disclose such information to any
+                third party except as necessary to perform its obligations under
+                these Terms, comply with law, or as otherwise permitted in writing by
+                the disclosing party. This obligation shall survive termination of
+                these Terms for a period of three (3) years.
+              </p>
+            </section>
+
+            <section id="warranties">
+              <h2><span class="num">09</span> Disclaimers &amp; Warranties</h2>
+              <div class="legal-callout">
+                The Services are provided on an "as is" and "as available" basis.
+              </div>
+              <p>
+                Except as expressly stated in these Terms, Payzue disclaims all
+                warranties of any kind, whether express, implied, or statutory,
+                including implied warranties of merchantability, fitness for a
+                particular purpose, title, and non-infringement, and any warranty
+                arising from course of dealing or usage of trade. Payzue does not
+                warrant that the Services will be uninterrupted, error-free, or
+                completely secure, or that any defect will be corrected.
+              </p>
+            </section>
+
+            <section id="liability">
+              <h2><span class="num">10</span> Limitation of Liability</h2>
+              <p>
+                To the maximum extent permitted by applicable law, in no event shall
+                Payzue, its officers, directors, employees, or agents be liable for
+                any indirect, incidental, special, consequential, exemplary, or
+                punitive damages, or for any loss of profits, revenue, data, or
+                business opportunity, arising out of or relating to your use of the
+                Services, even if Payzue has been advised of the possibility of such
+                damages.
+              </p>
+              <p>
+                Payzue's aggregate liability arising out of or relating to these
+                Terms, whether in contract, tort, or otherwise, shall not exceed the
+                total fees actually paid by you to Payzue in the six (6) months
+                immediately preceding the event giving rise to the claim.
+              </p>
+              <p>
+                Nothing in these Terms shall limit or exclude either party's
+                liability for fraud, gross negligence, or willful misconduct, or any
+                liability that cannot be excluded or limited under applicable law.
+              </p>
+            </section>
+
+            <section id="indemnification">
+              <h2><span class="num">11</span> Indemnification</h2>
+              <p>
+                You agree to defend, indemnify, and hold harmless Payzue and its
+                officers, directors, employees, and agents from and against any
+                claims, liabilities, damages, losses, and expenses, including
+                reasonable legal fees, arising out of or in any way connected with:
+                (a) your access to or use of the Services; (b) your violation of
+                these Terms or any applicable law; (c) your violation of any
+                third-party right, including intellectual property or privacy
+                rights; or (d) any transaction processed through your account.
+              </p>
+            </section>
+
+            <section id="suspension">
+              <h2><span class="num">12</span> Suspension &amp; Termination</h2>
+              <p>
+                Either party may terminate these Terms for convenience upon thirty
+                (30) days' prior written notice. Payzue may suspend or terminate
+                your access to the Services immediately, without notice, if: (a) you
+                materially breach these Terms; (b) we reasonably suspect fraudulent,
+                illegal, or high-risk activity on your account; (c) required by a
+                payment network, banking partner, or regulator; or (d) continued
+                provision of the Services would expose Payzue to legal or regulatory
+                liability.
+              </p>
+              <p>
+                Upon termination, your right to access the Services will immediately
+                cease. Payzue may retain funds for a commercially reasonable period
+                to cover potential refunds, chargebacks, and fees. Sections of these
+                Terms that by their nature should survive termination - including
+                Fees, Confidentiality, Disclaimers, Limitation of Liability,
+                Indemnification, and Governing Law - shall survive.
+              </p>
+            </section>
+
+            <section id="disputes">
+              <h2><span class="num">13</span> Governing Law &amp; Dispute Resolution</h2>
+              <p>
+                These Terms shall be governed by and construed in accordance with the
+                laws of India, without regard to its conflict of law principles. Any
+                dispute, controversy, or claim arising out of or relating to these
+                Terms shall first be referred to good-faith negotiation between the
+                parties for a period of thirty (30) days.
+              </p>
+              <p>
+                If the dispute is not resolved through negotiation, it shall be
+                referred to and finally resolved by arbitration in accordance with
+                the Arbitration and Conciliation Act, 1996, before a sole
+                arbitrator mutually appointed by the parties. The seat and venue
+                of arbitration shall be mutually agreed by the parties in India,
+                and the proceedings shall be conducted in the English language.
+                Subject to the foregoing, the courts of competent jurisdiction in
+                India shall have exclusive jurisdiction over any matter not
+                subject to arbitration.
+              </p>
+            </section>
+
+            <section id="force-majeure">
+              <h2><span class="num">14</span> Force Majeure</h2>
+              <p>
+                Neither party shall be liable for any failure or delay in
+                performance under these Terms to the extent such failure or delay is
+                caused by circumstances beyond its reasonable control, including acts
+                of God, natural disasters, war, terrorism, riots, embargoes, acts of
+                civil or military authority, fire, floods, accidents, epidemics or
+                pandemics, network or infrastructure failures, or failures of the
+                NPCI, banking, or telecommunications networks.
+              </p>
+            </section>
+
+            <section id="changes">
+              <h2><span class="num">15</span> Changes to these Terms</h2>
+              <p>
+                We may revise these Terms from time to time to reflect changes in
+                our Services, legal, regulatory, or security requirements. If we make
+                material changes, we will provide notice via the Payzue dashboard,
+                email, or by posting an updated version on this page with a revised
+                "Last updated" date. Your continued use of the Services after the
+                effective date of the revised Terms constitutes acceptance of the
+                changes.
+              </p>
+            </section>
+
+            <section id="general">
+              <h2><span class="num">16</span> General Provisions</h2>
+              <h3>Entire Agreement</h3>
+              <p>
+                These Terms, together with the Privacy Policy and any order form or
+                addendum executed by the parties, constitute the entire agreement
+                between you and Payzue with respect to the Services and supersede all
+                prior or contemporaneous agreements, whether written or oral.
+              </p>
+              <h3>Severability</h3>
+              <p>
+                If any provision of these Terms is held to be invalid or
+                unenforceable, that provision shall be limited or eliminated to the
+                minimum extent necessary, and the remaining provisions shall remain
+                in full force and effect.
+              </p>
+              <h3>Assignment</h3>
+              <p>
+                You may not assign or transfer these Terms without Payzue's prior
+                written consent. Payzue may assign these Terms without restriction,
+                including in connection with a merger, acquisition, or sale of
+                assets.
+              </p>
+              <h3>Waiver</h3>
+              <p>
+                No failure or delay by either party in exercising any right under
+                these Terms shall operate as a waiver of that right, nor shall any
+                single or partial exercise preclude any other or further exercise of
+                that right.
+              </p>
+              <h3>Notices</h3>
+              <p>
+                Notices to Payzue must be sent in writing to the email address in
+                Section 17. Notices to you may be sent to the email address or
+                contact details associated with your account.
+              </p>
+            </section>
+
+            <section id="contact">
+              <h2><span class="num">17</span> Contact Us</h2>
+              <p>
+                If you have any questions about these Terms, please contact us:
+              </p>
+              <div class="legal-contact-box">
+                <strong>Payzue Technologies Pvt. Ltd.</strong><br /><br />
+                Email:
+                <a href="mailto:support@payzue.com">support@payzue.com</a>
+              </div>
+            </section>
+          </article>
+        </div>
+      </div>
+    </main>
+
+    <footer>
+      <div class="container footer-bottom">
+        <div class="footer-copyright">
+          &copy; <span id="year"></span> Payzue Technologies Pvt. Ltd. All
+          rights reserved.
+        </div>
+        <div class="footer-bottom-links">
+          <a href="index.html">Home</a>
+          <a href="terms-of-service.html">Terms of Service</a>
+          <a href="privacy-policy.html">Privacy Policy</a>
+        </div>
+      </div>
+    </footer>
+
+    <script>
+      document.getElementById("year").textContent = new Date().getFullYear();
+
+      (function () {
+        const html = document.documentElement;
+        const toggle = document.getElementById("themeToggle");
+        const saved = localStorage.getItem("payzue.theme");
+        const prefersDark =
+          window.matchMedia &&
+          window.matchMedia("(prefers-color-scheme: dark)").matches;
+        const initial = saved || (prefersDark ? "dark" : "light");
+        html.setAttribute("data-theme", initial);
+
+        toggle.addEventListener("click", () => {
+          const next =
+            html.getAttribute("data-theme") === "dark" ? "light" : "dark";
+          html.setAttribute("data-theme", next);
+          localStorage.setItem("payzue.theme", next);
+        });
+      })();
+    </script>
+  </body>
+</html>
